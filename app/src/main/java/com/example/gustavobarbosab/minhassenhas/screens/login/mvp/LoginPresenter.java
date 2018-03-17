@@ -7,4 +7,13 @@ import com.example.gustavobarbosab.minhassenhas.screens.BasePresenter;
  */
 
 public class LoginPresenter implements BasePresenter {
+    @Override
+    public void onCreate() {
+
+    }
+
+    @Override
+    public void onDestroy() {
+
+    }
 }

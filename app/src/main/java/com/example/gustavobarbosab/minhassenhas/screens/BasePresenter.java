@@ -5,4 +5,6 @@ package com.example.gustavobarbosab.minhassenhas.screens;
  */
 
 public interface BasePresenter {
+    void onCreate();
+    void onDestroy();
 }
