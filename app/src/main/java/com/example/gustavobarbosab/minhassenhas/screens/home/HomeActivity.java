@@ -1,4 +1,4 @@
-package com.example.gustavobarbosab.minhassenhas;
+package com.example.gustavobarbosab.minhassenhas.screens.home;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -13,7 +13,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity
+import com.example.gustavobarbosab.minhassenhas.R;
+
+public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override

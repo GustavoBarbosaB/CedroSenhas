@@ -1,4 +1,4 @@
-package com.example.gustavobarbosab.minhassenhas;
+package com.example.gustavobarbosab.minhassenhas.screens.login;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -29,6 +29,9 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.gustavobarbosab.minhassenhas.screens.home.HomeActivity;
+import com.example.gustavobarbosab.minhassenhas.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,7 +90,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent android =  new Intent(getBaseContext(),MainActivity.class);
+                Intent android =  new Intent(getBaseContext(),HomeActivity.class);
                 startActivity(android);
             }
         });
