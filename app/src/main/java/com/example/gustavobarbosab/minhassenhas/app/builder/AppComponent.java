@@ -1,7 +1,9 @@
 package com.example.gustavobarbosab.minhassenhas.app.builder;
 
-import com.example.gustavobarbosab.minhassenhas.service.UserService;
+import com.example.gustavobarbosab.minhassenhas.api.UserApi;
 import com.example.gustavobarbosab.minhassenhas.util.rx.RxScheduler;
+
+import org.greenrobot.eventbus.EventBus;
 
 import dagger.Component;
 
@@ -13,11 +15,13 @@ import dagger.Component;
 @Component(modules = {
         NetworkModule.class,
         RxSchedulerModule.class,
+        EventBusModule.class,
+        ApiModule.class,
         AppModule.class,
-        ApiServiceModule.class
 }
 )
 public interface AppComponent {
     RxScheduler rxSchedulers();
-    UserService apiService();
+    UserApi apiService();
+    EventBus eventBus();
 }

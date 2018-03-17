@@ -1,5 +1,6 @@
 package com.example.gustavobarbosab.minhassenhas.app.builder;
 
+import android.app.Application;
 import android.content.Context;
 
 import dagger.Module;
@@ -10,7 +11,7 @@ import dagger.Provides;
  */
 
 @Module
-public class AppModule {
+public class AppModule extends Application{
 
     private final Context context;
 

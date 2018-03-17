@@ -19,4 +19,7 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="username_or_password_incorrect">Usuario ou senha incorretos!</string>
+    <string name="bemVindo">Bem vindo!</string>
+    <string name="invalidUsernameOrPAss">Usuario ou senha inválidos!</string>
 </resources>

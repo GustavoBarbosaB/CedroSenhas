@@ -1,4 +1,4 @@
-package com.example.gustavobarbosab.minhassenhas.service;
+package com.example.gustavobarbosab.minhassenhas.api;
 
 import com.example.gustavobarbosab.minhassenhas.domain.Token;
 import com.example.gustavobarbosab.minhassenhas.domain.User;
@@ -12,7 +12,7 @@ import retrofit2.http.POST;
  * Created by gustavobarbosab on 17/03/18.
  */
 
-public interface UserService {
+public interface UserApi {
 
     @Headers("content-type: application/json")
     @POST("login")

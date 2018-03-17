@@ -3,7 +3,6 @@ package com.example.gustavobarbosab.minhassenhas.screens.home.dagger;
 import com.example.gustavobarbosab.minhassenhas.screens.home.HomeActivity;
 import com.example.gustavobarbosab.minhassenhas.screens.home.mvp.HomeModel;
 import com.example.gustavobarbosab.minhassenhas.screens.home.mvp.HomePresenter;
-import com.example.gustavobarbosab.minhassenhas.util.rx.RxScheduler;
 
 import dagger.Module;
 import dagger.Provides;
@@ -28,9 +27,8 @@ public class HomeModule {
 
     @HomeScope
     @Provides
-    HomePresenter providePresenter(HomeActivity homeActivity, HomeModel homeModel, RxScheduler rxSchedulers){
-        CompositeDisposable compositeDisposable = new CompositeDisposable();
-        return new HomePresenter(homeActivity,homeModel,compositeDisposable,rxSchedulers);
+    HomePresenter providePresenter(HomeActivity homeActivity, HomeModel homeModel){
+        return new HomePresenter(homeActivity,homeModel);
     }
 
     @HomeScope

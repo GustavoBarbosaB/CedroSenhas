@@ -1,5 +1,7 @@
 package com.example.gustavobarbosab.minhassenhas.domain;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by gustavobarbosab on 17/03/18.
  */
@@ -7,7 +9,17 @@ package com.example.gustavobarbosab.minhassenhas.domain;
 public class Token {
     
     private String type;
-    private String token;
+    @SerializedName("token")
+    private String accessToken;
+    private String message;
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
     public String getType() {
         return type;
@@ -17,11 +29,11 @@ public class Token {
         this.type = type;
     }
 
-    public String getToken() {
-        return token;
+    public String getAccessToken() {
+        return accessToken;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
     }
 }
