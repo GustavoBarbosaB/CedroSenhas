@@ -11,6 +11,7 @@ import com.example.gustavobarbosab.minhassenhas.screens.login.LoginActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 /**
  * Created by gustavobarbosab on 16/03/18.
@@ -26,12 +27,13 @@ public class LoginPresenter implements BasePresenter {
         this.loginActivity = loginActivity;
         this.loginModel = loginModel;
         this.eventBus = eventBus;
-        eventBus.register(this);
+
     }
 
     @Override
     public void onCreate() {
         Log.d("Login presenter", "tudo ok");
+        eventBus.register(this);
     }
 
     @Override
@@ -49,14 +51,16 @@ public class LoginPresenter implements BasePresenter {
         if(!loginModel.setToken(token))
             loginActivity.messageSnack(loginActivity.getString(R.string.username_or_password_incorrect));
         else {
-            eventBus.cancelEventDelivery(token);
             loginActivity.startActivity(new Intent(loginActivity, HomeActivity.class));
+            loginActivity.stopLoading();
+            eventBus.cancelEventDelivery(token);
         }
     }
 
     public void login(String username, String password) {
         if(!loginModel.startLogin( username,  password))
             loginActivity.messageSnack(loginActivity.getString(R.string.invalidUsernameOrPAss));
-
+        else
+            loginActivity.startLoading();
     }
 }

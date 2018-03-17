@@ -8,7 +8,6 @@ import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.app.LoaderManager.LoaderCallbacks;
 
 import android.content.CursorLoader;
 import android.content.Loader;
@@ -20,20 +19,15 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ProgressBar;
 
 import com.example.gustavobarbosab.minhassenhas.app.MainApp;
-import com.example.gustavobarbosab.minhassenhas.screens.home.HomeActivity;
 import com.example.gustavobarbosab.minhassenhas.R;
-import com.example.gustavobarbosab.minhassenhas.screens.home.dagger.HomeModule;
 import com.example.gustavobarbosab.minhassenhas.screens.login.dagger.DaggerLoginComponent;
 import com.example.gustavobarbosab.minhassenhas.screens.login.dagger.LoginModule;
 import com.example.gustavobarbosab.minhassenhas.screens.login.mvp.LoginPresenter;
@@ -47,7 +41,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static android.Manifest.permission.READ_CONTACTS;
+import static android.Manifest.permission.INTERNET;
 
 /**
  * A login screen that offers login via email/password.
@@ -55,9 +49,10 @@ import static android.Manifest.permission.READ_CONTACTS;
 public class LoginActivity extends AppCompatActivity{
 
     // UI references.
+    private static final int REQUEST_INTERNET_ACCESS = 0;
 
     @BindView(R.id.login_progress)
-    View mProgressView;
+    ProgressBar mProgressView;
 
     @BindView(R.id.login_form)
     View mLoginFormView;
@@ -85,6 +80,7 @@ public class LoginActivity extends AppCompatActivity{
                 .inject(this);
 
         configViews();
+        mayRequestInternetAccess();
         loginPresenter.onCreate();
     }
 
@@ -106,5 +102,45 @@ public class LoginActivity extends AppCompatActivity{
     public void startActivity(Intent intent){
         super.startActivity(intent);
     }
+
+    public void startLoading() {
+        mProgressView.setVisibility(View.VISIBLE);
+    }
+
+    public void stopLoading() {
+        mProgressView.setVisibility(View.GONE);
+
+    }
+
+    private boolean mayRequestInternetAccess() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            return true;
+        }
+        if (checkSelfPermission(INTERNET) == PackageManager.PERMISSION_GRANTED) {
+            return true;
+        }
+        if (shouldShowRequestPermissionRationale(INTERNET)) {
+            requestPermissions(new String[]{INTERNET}, REQUEST_INTERNET_ACCESS);
+        } else {
+            requestPermissions(new String[]{INTERNET}, REQUEST_INTERNET_ACCESS);
+        }
+        return false;
+    }
+
+    /**
+     * Callback received when a permissions request has been completed.
+     */
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        if (requestCode == REQUEST_INTERNET_ACCESS) {
+            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                messageSnack(getString(R.string.access));
+            }
+        }
+    }
+
+
+
 }
 

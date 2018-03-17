@@ -22,6 +22,8 @@ public class LoginModel {
     public boolean startLogin(String username, String password) {
 
         if(validaUsername(username) && validaPassword(password)) {
+            user.setEmail(username);
+            user.setPassword(password);
             loginService.loginUser(user);
             return true;
         }
@@ -35,7 +37,7 @@ public class LoginModel {
 
     private boolean validaUsername(String username) {
         /*TODO implementar validação username e password*/
-        return !(username.isEmpty() && !username.contains("@"));
+        return !(username.isEmpty() || !username.contains("@"));
     }
 
     public boolean setToken(Token token) {

@@ -1,5 +1,7 @@
 package com.example.gustavobarbosab.minhassenhas.service;
 
+import android.util.Log;
+
 import com.example.gustavobarbosab.minhassenhas.api.UserApi;
 import com.example.gustavobarbosab.minhassenhas.domain.Token;
 import com.example.gustavobarbosab.minhassenhas.domain.User;
@@ -33,13 +35,17 @@ public class LoginService {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(this::handleResponse,this::handleError));
+        Log.d("LOGIN SERVICE:","Tentativa de login");
     }
 
     private void handleResponse(Token token) {
+        Log.d("LOGIN SERVICE:","OK");
+        Log.d("LOGIN SERVICE:",token.getAccessToken());
         eventBus.post(token);
     }
 
     private void handleError(Throwable error) {
+        Log.d("LOGIN SERVICE:",error.getMessage());
         eventBus.post(error);
     }
 }
