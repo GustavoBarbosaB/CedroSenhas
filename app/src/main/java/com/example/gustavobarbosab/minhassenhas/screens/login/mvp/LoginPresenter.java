@@ -11,7 +11,6 @@ import com.example.gustavobarbosab.minhassenhas.screens.login.LoginActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 /**
  * Created by gustavobarbosab on 16/03/18.
@@ -43,7 +42,10 @@ public class LoginPresenter implements BasePresenter {
 
     @Subscribe
     public void error(String error){
-        loginActivity.messageSnack(error);
+        if(error.trim().equals("HTTP 403"))
+            loginActivity.messageSnack(loginActivity.getString(R.string.username_or_password_incorrect));
+
+        loginActivity.stopLoading();
     }
 
     @Subscribe
@@ -53,7 +55,6 @@ public class LoginPresenter implements BasePresenter {
         else {
             loginActivity.startActivity(new Intent(loginActivity, HomeActivity.class));
             loginActivity.stopLoading();
-            eventBus.cancelEventDelivery(token);
         }
     }
 

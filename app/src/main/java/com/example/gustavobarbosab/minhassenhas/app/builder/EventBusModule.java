@@ -14,6 +14,6 @@ public class EventBusModule {
 
     @Provides
     EventBus provideEventBus(){
-        return EventBus.builder().build();
+        return EventBus.getDefault();
     }
 }

@@ -35,17 +35,17 @@ public class LoginService {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(this::handleResponse,this::handleError));
-        Log.d("LOGIN SERVICE:","Tentativa de login");
+        Log.d(this.getClass().getName(),"Tentativa de login");
     }
 
     private void handleResponse(Token token) {
-        Log.d("LOGIN SERVICE:","OK");
-        Log.d("LOGIN SERVICE:",token.getAccessToken());
+        Log.d(this.getClass().getName(),"OK");
+        Log.d(this.getClass().getName(),token.getAccessToken());
         eventBus.post(token);
     }
 
     private void handleError(Throwable error) {
-        Log.d("LOGIN SERVICE:",error.getMessage());
-        eventBus.post(error);
+        Log.d(this.getClass().getName(),error.getMessage().trim());
+        eventBus.post(error.getMessage());
     }
 }

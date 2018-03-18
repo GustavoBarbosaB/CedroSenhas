@@ -1,39 +1,23 @@
 package com.example.gustavobarbosab.minhassenhas.screens.login;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.AsyncTask;
-
-import android.os.Build;
-import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.text.TextUtils;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
-import com.example.gustavobarbosab.minhassenhas.app.MainApp;
 import com.example.gustavobarbosab.minhassenhas.R;
+import com.example.gustavobarbosab.minhassenhas.app.MainApp;
 import com.example.gustavobarbosab.minhassenhas.screens.login.dagger.DaggerLoginComponent;
 import com.example.gustavobarbosab.minhassenhas.screens.login.dagger.LoginModule;
 import com.example.gustavobarbosab.minhassenhas.screens.login.mvp.LoginPresenter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -99,10 +83,6 @@ public class LoginActivity extends AppCompatActivity{
                 .setAction("Action", null).show();
     }
 
-    public void startActivity(Intent intent){
-        super.startActivity(intent);
-    }
-
     public void startLoading() {
         mProgressView.setVisibility(View.VISIBLE);
     }
@@ -133,11 +113,11 @@ public class LoginActivity extends AppCompatActivity{
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
-        if (requestCode == REQUEST_INTERNET_ACCESS) {
-            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                messageSnack(getString(R.string.access));
-            }
+
+        if (requestCode == REQUEST_INTERNET_ACCESS && grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            messageSnack(getString(R.string.access));
         }
+
     }
 
 
