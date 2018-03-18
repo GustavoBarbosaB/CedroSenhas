@@ -1,4 +1,4 @@
-package com.example.gustavobarbosab.minhassenhas.helper;
+package com.example.gustavobarbosab.minhassenhas.dbhelper;
 
 import android.content.Context;
 import android.util.Log;
@@ -33,7 +33,7 @@ public class DatabaseManager {
         return helper;
     }
 
-    public List<Site> findAllBook() {
+    public List<Site> findAllSite() {
         List<Site> list = null;
 
         try {
@@ -44,5 +44,18 @@ public class DatabaseManager {
         }
 
         return list;
+    }
+
+    public Site findOneSite(int id) {
+        List<Site> list = null;
+
+        try {
+            list = getHelper().getSiteDao().queryBuilder().where()
+                    .eq("id",id).query();
+        } catch (java.sql.SQLException e) {
+            Log.d(this.getClass().getName(),e.getMessage());
+        }
+
+        return list.isEmpty()?null:list.get(0);
     }
 }

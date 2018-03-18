@@ -1,4 +1,4 @@
-package com.example.gustavobarbosab.minhassenhas.helper;
+package com.example.gustavobarbosab.minhassenhas.dbhelper;
 
 import android.content.Context;
 import android.database.SQLException;

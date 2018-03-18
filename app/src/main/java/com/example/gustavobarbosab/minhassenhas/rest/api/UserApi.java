@@ -1,6 +1,6 @@
 package com.example.gustavobarbosab.minhassenhas.rest.api;
 
-import com.example.gustavobarbosab.minhassenhas.domain.Token;
+import com.example.gustavobarbosab.minhassenhas.domain.TokenResponse;
 import com.example.gustavobarbosab.minhassenhas.domain.User;
 
 import io.reactivex.Observable;
@@ -16,9 +16,9 @@ public interface UserApi {
 
     @Headers("content-type: application/json")
     @POST("login")
-    Observable<Token> loginUser(@Body User user);
+    Observable<TokenResponse> loginUser(@Body User user);
 
     @Headers("content-type: application/json")
     @POST("register")
-    Observable<Token> registerUser(@Body User user);
+    Observable<TokenResponse> registerUser(@Body User user);
 }

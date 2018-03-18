@@ -18,10 +18,24 @@ public class Site implements Serializable{
     private int siteId;
     @DatabaseField(columnName = "url")
     private String url;
+    @DatabaseField(columnName = "nome")
+    private String nome;
     @DatabaseField(columnName = "email")
     private String email;
     @DatabaseField(columnName = "password")
     private String password;
+
+    public Site() {
+        //ORM
+    }
+
+    public Site(String url, String nome, String email, String password) {
+
+        this.url = url;
+        this.nome = nome;
+        this.email = email;
+        this.password = password;
+    }
 
     public String getUrl() {
         return url;
@@ -48,5 +62,11 @@ public class Site implements Serializable{
     }
 
 
+    public String getNome() {
+        return nome;
+    }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 }

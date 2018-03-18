@@ -1,6 +1,6 @@
 package com.example.gustavobarbosab.minhassenhas.screens.login.mvp;
 
-import com.example.gustavobarbosab.minhassenhas.domain.Token;
+import com.example.gustavobarbosab.minhassenhas.domain.TokenResponse;
 import com.example.gustavobarbosab.minhassenhas.domain.User;
 import com.example.gustavobarbosab.minhassenhas.rest.service.LoginService;
 
@@ -10,7 +10,7 @@ import com.example.gustavobarbosab.minhassenhas.rest.service.LoginService;
 
 public class LoginModel {
 
-    private Token token;
+    private TokenResponse token;
     private LoginService loginService;
     private User user;
 
@@ -40,7 +40,7 @@ public class LoginModel {
         return !(username.isEmpty() || !username.contains("@"));
     }
 
-    public boolean setToken(Token token) {
+    public boolean setToken(TokenResponse token) {
         this.token=token;
         return token.getAccessToken() != null;
     }

@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.example.gustavobarbosab.minhassenhas.R;
-import com.example.gustavobarbosab.minhassenhas.domain.Token;
+import com.example.gustavobarbosab.minhassenhas.domain.TokenResponse;
 import com.example.gustavobarbosab.minhassenhas.screens.BasePresenter;
 import com.example.gustavobarbosab.minhassenhas.screens.home.HomeActivity;
 import com.example.gustavobarbosab.minhassenhas.screens.login.LoginActivity;
@@ -49,7 +49,7 @@ public class LoginPresenter implements BasePresenter {
     }
 
     @Subscribe
-    public void receiveToken(Token token){
+    public void receiveToken(TokenResponse token){
         if(!loginModel.setToken(token))
             loginActivity.messageSnack(loginActivity.getString(R.string.username_or_password_incorrect));
         else {

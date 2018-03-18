@@ -3,7 +3,7 @@ package com.example.gustavobarbosab.minhassenhas.rest.service;
 import android.util.Log;
 
 import com.example.gustavobarbosab.minhassenhas.rest.api.UserApi;
-import com.example.gustavobarbosab.minhassenhas.domain.Token;
+import com.example.gustavobarbosab.minhassenhas.domain.TokenResponse;
 import com.example.gustavobarbosab.minhassenhas.domain.User;
 
 import org.greenrobot.eventbus.EventBus;
@@ -37,7 +37,7 @@ public class LoginService {
         Log.d(this.getClass().getName(),"Tentativa de login");
     }
 
-    private void handleResponse(Token token) {
+    private void handleResponse(TokenResponse token) {
         Log.d(this.getClass().getName(),"OK");
         Log.d(this.getClass().getName(),token.getAccessToken());
         eventBus.post(token);
