@@ -1,11 +1,10 @@
-package com.example.gustavobarbosab.minhassenhas.service;
+package com.example.gustavobarbosab.minhassenhas.rest.service;
 
 import android.util.Log;
 
-import com.example.gustavobarbosab.minhassenhas.api.UserApi;
+import com.example.gustavobarbosab.minhassenhas.rest.api.UserApi;
 import com.example.gustavobarbosab.minhassenhas.domain.Token;
 import com.example.gustavobarbosab.minhassenhas.domain.User;
-import com.example.gustavobarbosab.minhassenhas.screens.login.mvp.LoginModel;
 
 import org.greenrobot.eventbus.EventBus;
 

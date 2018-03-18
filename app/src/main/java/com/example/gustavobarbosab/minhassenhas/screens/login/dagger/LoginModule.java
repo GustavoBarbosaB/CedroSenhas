@@ -1,13 +1,10 @@
 package com.example.gustavobarbosab.minhassenhas.screens.login.dagger;
 
-import com.example.gustavobarbosab.minhassenhas.api.UserApi;
-import com.example.gustavobarbosab.minhassenhas.screens.home.HomeActivity;
-import com.example.gustavobarbosab.minhassenhas.screens.home.mvp.HomeModel;
+import com.example.gustavobarbosab.minhassenhas.rest.api.UserApi;
 import com.example.gustavobarbosab.minhassenhas.screens.login.LoginActivity;
 import com.example.gustavobarbosab.minhassenhas.screens.login.mvp.LoginModel;
 import com.example.gustavobarbosab.minhassenhas.screens.login.mvp.LoginPresenter;
-import com.example.gustavobarbosab.minhassenhas.service.LoginService;
-import com.example.gustavobarbosab.minhassenhas.util.rx.RxScheduler;
+import com.example.gustavobarbosab.minhassenhas.rest.service.LoginService;
 
 import org.greenrobot.eventbus.EventBus;
 

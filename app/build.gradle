@@ -56,5 +56,8 @@ dependencies {
     //Generate Events
     compile 'org.greenrobot:eventbus:3.1.1'
 
+    //ORMLite
+    // https://mvnrepository.com/artifact/com.j256.ormlite/ormlite-android
+    compile group: 'com.j256.ormlite', name: 'ormlite-android', version: '5.0'
 
 }

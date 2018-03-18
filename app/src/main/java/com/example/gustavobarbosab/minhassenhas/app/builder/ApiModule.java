@@ -1,6 +1,6 @@
 package com.example.gustavobarbosab.minhassenhas.app.builder;
 
-import com.example.gustavobarbosab.minhassenhas.api.UserApi;
+import com.example.gustavobarbosab.minhassenhas.rest.api.UserApi;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import dagger.Module;

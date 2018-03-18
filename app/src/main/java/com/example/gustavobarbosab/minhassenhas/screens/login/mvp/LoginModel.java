@@ -2,7 +2,7 @@ package com.example.gustavobarbosab.minhassenhas.screens.login.mvp;
 
 import com.example.gustavobarbosab.minhassenhas.domain.Token;
 import com.example.gustavobarbosab.minhassenhas.domain.User;
-import com.example.gustavobarbosab.minhassenhas.service.LoginService;
+import com.example.gustavobarbosab.minhassenhas.rest.service.LoginService;
 
 /**
  * Created by gustavobarbosab on 16/03/18.

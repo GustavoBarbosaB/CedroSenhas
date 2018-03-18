@@ -1,4 +1,4 @@
-package com.example.gustavobarbosab.minhassenhas.api;
+package com.example.gustavobarbosab.minhassenhas.rest.api;
 
 import com.example.gustavobarbosab.minhassenhas.domain.Token;
 import com.example.gustavobarbosab.minhassenhas.domain.User;

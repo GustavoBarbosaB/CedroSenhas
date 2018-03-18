@@ -1,6 +1,6 @@
 package com.example.gustavobarbosab.minhassenhas.app.builder;
 
-import com.example.gustavobarbosab.minhassenhas.api.UserApi;
+import com.example.gustavobarbosab.minhassenhas.rest.api.UserApi;
 import com.example.gustavobarbosab.minhassenhas.util.rx.RxScheduler;
 
 import org.greenrobot.eventbus.EventBus;
