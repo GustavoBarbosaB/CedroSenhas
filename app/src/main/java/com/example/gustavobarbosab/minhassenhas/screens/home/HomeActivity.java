@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,9 +19,16 @@ import android.widget.Toast;
 
 import com.example.gustavobarbosab.minhassenhas.R;
 import com.example.gustavobarbosab.minhassenhas.app.MainApp;
+import com.example.gustavobarbosab.minhassenhas.domain.Site;
 import com.example.gustavobarbosab.minhassenhas.screens.home.dagger.DaggerHomeComponent;
 import com.example.gustavobarbosab.minhassenhas.screens.home.dagger.HomeModule;
 import com.example.gustavobarbosab.minhassenhas.screens.home.mvp.HomePresenter;
+import com.example.gustavobarbosab.minhassenhas.screens.home.recycler.SitesAdapter;
+import com.example.gustavobarbosab.minhassenhas.screens.home.recycler.item.BaseItem;
+import com.example.gustavobarbosab.minhassenhas.screens.home.recycler.item.SiteItem;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -42,6 +51,11 @@ public class HomeActivity extends AppCompatActivity
     @BindView(R.id.nav_view)
     NavigationView navigationView;
 
+    @BindView(R.id.homeRecycler)
+    RecyclerView recyclerView;
+
+    private SitesAdapter adapter;
+
     @Inject
     HomePresenter homePresenter;
 
@@ -58,8 +72,25 @@ public class HomeActivity extends AppCompatActivity
                 .inject(this);
 
         configViews();
+        configRecycler();
         homePresenter.onCreate();
 
+    }
+
+    private void configRecycler() {
+        adapter = mockAdapter();
+        recyclerView.setAdapter(adapter);
+        LinearLayoutManager mLayout= new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(mLayout);
+    }
+
+    private SitesAdapter mockAdapter() {
+        ArrayList<BaseItem> sites = new ArrayList<>();
+        sites.add(new SiteItem("","Google","gustavo@hotmail.com",""));
+        sites.add(new SiteItem("","Facebook","gustavoates@okmail.com",""));
+        sites.add(new SiteItem("","Gmail","gustavoanto@gmail.com",""));
+        sites.add(new SiteItem("","Deezer","gustavotiao@femail.com",""));
+        return new SitesAdapter(sites);
     }
 
     public void configViews(){

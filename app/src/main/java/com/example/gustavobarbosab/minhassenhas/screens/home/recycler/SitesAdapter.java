@@ -10,6 +10,7 @@ import com.example.gustavobarbosab.minhassenhas.R;
 import com.example.gustavobarbosab.minhassenhas.screens.home.recycler.holder.BaseHolder;
 import com.example.gustavobarbosab.minhassenhas.screens.home.recycler.holder.SiteHolder;
 import com.example.gustavobarbosab.minhassenhas.screens.home.recycler.item.BaseItem;
+import com.example.gustavobarbosab.minhassenhas.screens.home.recycler.item.SiteItem;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class SitesAdapter extends RecyclerView.Adapter<BaseHolder> implements Se
 
 
     public SitesAdapter(ArrayList<BaseItem> sites) {
+        //TODO Alterar para Base item
         this.sites = sites;
     }
 
