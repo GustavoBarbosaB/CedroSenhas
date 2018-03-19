@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.gustavobarbosab.minhassenhas.R;
 import com.example.gustavobarbosab.minhassenhas.screens.home.recycler.holder.BaseHolder;
 import com.example.gustavobarbosab.minhassenhas.screens.home.recycler.holder.SiteHolder;
 import com.example.gustavobarbosab.minhassenhas.screens.home.recycler.item.BaseItem;
@@ -37,9 +38,7 @@ public class SitesAdapter extends RecyclerView.Adapter<BaseHolder> implements Se
 
         View view = LayoutInflater
                         .from(parent.getContext())
-                        .inflate(null,parent,false);
-        /*TODO adicionar o parser de layout correto*/
-
+                        .inflate(R.layout.recycler_item_home,parent,false);
         return new SiteHolder(view);
     }
 

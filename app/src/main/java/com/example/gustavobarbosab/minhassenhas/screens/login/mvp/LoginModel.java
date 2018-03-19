@@ -3,6 +3,8 @@ package com.example.gustavobarbosab.minhassenhas.screens.login.mvp;
 import com.example.gustavobarbosab.minhassenhas.domain.TokenResponse;
 import com.example.gustavobarbosab.minhassenhas.domain.User;
 import com.example.gustavobarbosab.minhassenhas.rest.service.LoginService;
+import com.example.gustavobarbosab.minhassenhas.util.validator.EnumUserPassValidator;
+import com.example.gustavobarbosab.minhassenhas.util.validator.UserPassValidator;
 
 /**
  * Created by gustavobarbosab on 16/03/18.
@@ -19,26 +21,20 @@ public class LoginModel {
         user = new User();
     }
 
-    public boolean startLogin(String username, String password) {
+    public EnumUserPassValidator startLogin(String username, String password) {
 
-        if(validaUsername(username) && validaPassword(password)) {
+        EnumUserPassValidator valida = UserPassValidator
+                                        .getInstance().validate(username,password);
+
+        if(valida.equals(EnumUserPassValidator.OK)) {
             user.setEmail(username);
             user.setPassword(password);
             loginService.loginUser(user);
-            return true;
         }
 
-        return false;
+        return valida;
     }
 
-    private boolean validaPassword(String password) {
-        return !password.isEmpty();
-    }
-
-    private boolean validaUsername(String username) {
-        /*TODO implementar validação username e password*/
-        return !(username.isEmpty() || !username.contains("@"));
-    }
 
     public boolean setToken(TokenResponse token) {
         this.token=token;

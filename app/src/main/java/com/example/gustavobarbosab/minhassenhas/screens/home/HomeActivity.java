@@ -1,6 +1,7 @@
 package com.example.gustavobarbosab.minhassenhas.screens.home;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -62,7 +63,7 @@ public class HomeActivity extends AppCompatActivity
     }
 
     public void configViews(){
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home);
 
         ButterKnife.bind(this);
 
@@ -116,7 +117,7 @@ public class HomeActivity extends AppCompatActivity
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 

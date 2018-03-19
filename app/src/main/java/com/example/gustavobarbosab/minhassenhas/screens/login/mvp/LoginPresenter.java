@@ -8,6 +8,7 @@ import com.example.gustavobarbosab.minhassenhas.domain.TokenResponse;
 import com.example.gustavobarbosab.minhassenhas.screens.BasePresenter;
 import com.example.gustavobarbosab.minhassenhas.screens.home.HomeActivity;
 import com.example.gustavobarbosab.minhassenhas.screens.login.LoginActivity;
+import com.example.gustavobarbosab.minhassenhas.util.validator.EnumUserPassValidator;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -41,17 +42,15 @@ public class LoginPresenter implements BasePresenter {
     }
 
     @Subscribe
-    public void error(String error){
-        if(error.trim().equals("HTTP 403"))
-            loginActivity.messageSnack(loginActivity.getString(R.string.username_or_password_incorrect));
-
+    public void error(Integer errorMessage){
+        loginActivity.messageSnack(errorMessage);
         loginActivity.stopLoading();
     }
 
     @Subscribe
     public void receiveToken(TokenResponse token){
         if(!loginModel.setToken(token))
-            loginActivity.messageSnack(loginActivity.getString(R.string.username_or_password_incorrect));
+            loginActivity.messageSnack(R.string.username_or_password_incorrect);
         else {
             loginActivity.startActivity(new Intent(loginActivity, HomeActivity.class));
             loginActivity.stopLoading();
@@ -59,8 +58,12 @@ public class LoginPresenter implements BasePresenter {
     }
 
     public void login(String username, String password) {
-        if(!loginModel.startLogin( username,  password))
-            loginActivity.messageSnack(loginActivity.getString(R.string.invalidUsernameOrPAss));
+        EnumUserPassValidator validator = loginModel.startLogin( username,  password);
+        if(!validator.equals(EnumUserPassValidator.OK))
+            if(validator.equals(EnumUserPassValidator.PASSWORD))
+                loginActivity.passwordError(validator.getVal());
+            else
+                loginActivity.usernameError(validator.getVal());
         else
             loginActivity.startLoading();
     }

@@ -2,6 +2,7 @@ package com.example.gustavobarbosab.minhassenhas.rest.service;
 
 import android.util.Log;
 
+import com.example.gustavobarbosab.minhassenhas.R;
 import com.example.gustavobarbosab.minhassenhas.rest.api.UserApi;
 import com.example.gustavobarbosab.minhassenhas.domain.TokenResponse;
 import com.example.gustavobarbosab.minhassenhas.domain.User;
@@ -44,7 +45,8 @@ public class LoginService {
     }
 
     private void handleError(Throwable error) {
-        Log.d(this.getClass().getName(),error.getMessage().trim());
-        eventBus.post(error.getMessage());
+        Log.d(this.getClass().getName(),error.getMessage());
+        eventBus.post(error.getMessage().trim().equals("HTTP 403")?
+                R.string.invalidUsernameOrPAss:R.string.bemVindo);
     }
 }

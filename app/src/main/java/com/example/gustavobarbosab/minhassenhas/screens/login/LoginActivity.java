@@ -1,6 +1,5 @@
 package com.example.gustavobarbosab.minhassenhas.screens.login;
 
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -37,9 +36,6 @@ public class LoginActivity extends AppCompatActivity{
 
     @BindView(R.id.login_progress)
     ProgressBar mProgressView;
-
-    @BindView(R.id.login_form)
-    View mLoginFormView;
 
     @BindView(R.id.password)
     EditText mPasswordView;
@@ -78,9 +74,18 @@ public class LoginActivity extends AppCompatActivity{
         loginPresenter.login(mEmailView.getText().toString(),mPasswordView.getText().toString());
     }
 
-    public void messageSnack(String message) {
-        Snackbar.make(findViewById(R.id.login_layout), message, Snackbar.LENGTH_LONG)
+    public void messageSnack(Integer message) {
+        Snackbar.make(findViewById(R.id.login_layout), getString(message), Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
+    }
+
+    public void usernameError(Integer msg){
+        mEmailView.setError(getString(msg));
+        mEmailView.setFocusable(true);
+    }
+    public void passwordError(Integer msg){
+        mPasswordView.setError(getString(msg));
+        mPasswordView.setFocusable(true);
     }
 
     public void startLoading() {
@@ -115,7 +120,7 @@ public class LoginActivity extends AppCompatActivity{
                                            @NonNull int[] grantResults) {
 
         if (requestCode == REQUEST_INTERNET_ACCESS && grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            messageSnack(getString(R.string.access));
+            messageSnack(R.string.access);
         }
 
     }
