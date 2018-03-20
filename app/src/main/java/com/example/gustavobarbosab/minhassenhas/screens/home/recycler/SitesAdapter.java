@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.gustavobarbosab.minhassenhas.R;
 import com.example.gustavobarbosab.minhassenhas.screens.home.recycler.holder.BaseHolder;
@@ -48,6 +49,11 @@ public class SitesAdapter extends RecyclerView.Adapter<BaseHolder> implements Se
     public void onBindViewHolder(BaseHolder holder, int position) {
         BaseItem item = sites.get(position);
         holder.bindType(item);
+        //TODO chamar a outra activity após criá-la
+        holder.itemView.setOnClickListener(view ->
+                Toast.makeText(view.getContext(),
+                                "Selected index " + position,
+                                Toast.LENGTH_LONG).show());
     }
 
     @Override

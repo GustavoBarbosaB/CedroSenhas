@@ -13,13 +13,11 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.gustavobarbosab.minhassenhas.R;
 import com.example.gustavobarbosab.minhassenhas.app.MainApp;
-import com.example.gustavobarbosab.minhassenhas.domain.Site;
 import com.example.gustavobarbosab.minhassenhas.screens.home.dagger.DaggerHomeComponent;
 import com.example.gustavobarbosab.minhassenhas.screens.home.dagger.HomeModule;
 import com.example.gustavobarbosab.minhassenhas.screens.home.mvp.HomePresenter;
@@ -28,7 +26,6 @@ import com.example.gustavobarbosab.minhassenhas.screens.home.recycler.item.BaseI
 import com.example.gustavobarbosab.minhassenhas.screens.home.recycler.item.SiteItem;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -85,6 +82,7 @@ public class HomeActivity extends AppCompatActivity
     }
 
     private SitesAdapter mockAdapter() {
+        //TODO remover o mock
         ArrayList<BaseItem> sites = new ArrayList<>();
         sites.add(new SiteItem("","Google","gustavo@hotmail.com",""));
         sites.add(new SiteItem("","Facebook","gustavoates@okmail.com",""));
@@ -125,7 +123,6 @@ public class HomeActivity extends AppCompatActivity
     }
 
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.

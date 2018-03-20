@@ -13,7 +13,7 @@ public class UserPassValidator {
     private static UserPassValidator userPassValidator;
 
     private static final String PATTERN_PASS =
-            "((?=.*\\d)(?=.*\\w)(?=.*[{}()^?&*!_=+@#$%]).{8,20})";
+            "((?=.*\\d)(?=.*[a-zA-Z])(?=.*[{}()^?&*!_=+@#$%]).{8,20})";
 
     private UserPassValidator() {
         pattern  = Pattern.compile(PATTERN_PASS);

@@ -8,21 +8,24 @@ import com.example.gustavobarbosab.minhassenhas.R;
 import com.example.gustavobarbosab.minhassenhas.screens.home.recycler.item.BaseItem;
 import com.example.gustavobarbosab.minhassenhas.screens.home.recycler.item.SiteItem;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by gustavobarbosab on 18/03/18.
  */
 
 public class SiteHolder extends BaseHolder{
-
-    private TextView nameSite;
-    private TextView emailSite;
-    private ImageView icon;
+    @BindView(R.id.homeCardTxtNomeSite)
+    TextView nameSite;
+    @BindView(R.id.homeCardTxtEmailSite)
+    TextView emailSite;
+    @BindView(R.id.homeCardImageSite)
+    ImageView icon;
 
     public SiteHolder(View itemView) {
         super(itemView);
-        nameSite = itemView.findViewById(R.id.homeCardTxtNomeSite);
-        emailSite = itemView.findViewById(R.id.homeCardTxtEmailSite);
-        icon = itemView.findViewById(R.id.homeCardImageSite);
+        ButterKnife.bind(this, itemView);
     }
 
     @Override
