@@ -23,13 +23,23 @@ public class UserPassValidator {
         return userPassValidator!=null?userPassValidator:(new UserPassValidator());
     }
 
-    public EnumUserPassValidator validate(String email, String password){
-        Matcher matcher;
-
-        if(email!=null && !email.isEmpty() && email.contains("@") && email.contains(".com")){
-            matcher = pattern.matcher(password);
-            return matcher.matches()? EnumUserPassValidator.OK: EnumUserPassValidator.PASSWORD;
+    public EnumUserPassValidator validateUserPass(String email, String password){
+        if(validateUser(email).equals(EnumUserPassValidator.OK)){
+            return validatePass(password);
         }else
             return EnumUserPassValidator.USERNAME;
+    }
+
+    public EnumUserPassValidator validateUser(String email){
+
+        if(email!=null && !email.isEmpty() && email.contains("@") && email.contains(".com")){
+            return EnumUserPassValidator.OK;
+        }else
+            return EnumUserPassValidator.USERNAME;
+    }
+
+    public EnumUserPassValidator validatePass(String password){
+        Matcher matcher = pattern.matcher(password);
+        return matcher.matches()? EnumUserPassValidator.OK: EnumUserPassValidator.PASSWORD;
     }
 }

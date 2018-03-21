@@ -11,8 +11,6 @@ import com.example.gustavobarbosab.minhassenhas.util.validator.UserPassValidator
  */
 
 public class LoginModel {
-
-    private TokenResponse token;
     private LoginService loginService;
     private User user;
 
@@ -21,10 +19,19 @@ public class LoginModel {
         user = new User();
     }
 
+    public boolean validaPassword(String password){
+        return UserPassValidator.getInstance().validatePass(password).equals(EnumUserPassValidator.OK);
+    }
+
+    public boolean validaEmail(String email){
+        return UserPassValidator.getInstance().validateUser(email).equals(EnumUserPassValidator.OK);
+    }
+
+
     public EnumUserPassValidator startLogin(String username, String password) {
 
         EnumUserPassValidator valida = UserPassValidator
-                                        .getInstance().validate(username,password);
+                                        .getInstance().validateUserPass(username,password);
 
         if(valida.equals(EnumUserPassValidator.OK)) {
             user.setEmail(username);
@@ -35,10 +42,5 @@ public class LoginModel {
         return valida;
     }
 
-
-    public boolean setToken(TokenResponse token) {
-        this.token=token;
-        return token.getAccessToken() != null;
-    }
 
 }

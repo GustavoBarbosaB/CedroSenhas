@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.example.gustavobarbosab.minhassenhas.domain.Site;
-import com.example.gustavobarbosab.minhassenhas.helper.db.DatabaseHelper;
+import com.example.gustavobarbosab.minhassenhas.helper.DatabaseHelper;
 
 import java.sql.SQLException;
 import java.util.List;

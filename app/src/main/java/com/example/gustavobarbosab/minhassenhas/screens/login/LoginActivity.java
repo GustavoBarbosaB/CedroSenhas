@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
@@ -46,6 +47,9 @@ public class LoginActivity extends AppCompatActivity{
     @BindView(R.id.email_sign_in_button)
     Button mEmailSignInButton;
 
+    @BindView(R.id.loginCheckSave)
+    CheckBox checkBox;
+
     @Inject
     LoginPresenter loginPresenter;
 
@@ -67,6 +71,7 @@ public class LoginActivity extends AppCompatActivity{
     public void configViews(){
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        changeCheckBox(false);
     }
 
     @OnClick(R.id.email_sign_in_button)
@@ -124,8 +129,21 @@ public class LoginActivity extends AppCompatActivity{
         }
 
     }
+    @OnClick(R.id.loginCheckSave)
+    public void saveEmailCheck(){
+        if(checkBox.isChecked()){
+            loginPresenter.saveEmail(mEmailView.getText().toString());
+        }else
+            loginPresenter.removeEmail();
+    }
 
 
+    public void changeTextEmail(String textEmail) {
+        mEmailView.setText(textEmail);
+    }
 
+    public void changeCheckBox(boolean b) {
+        checkBox.setChecked(b);
+    }
 }
 

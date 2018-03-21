@@ -23,4 +23,5 @@
     <string name="bemVindo">Bem vindo!</string>
     <string name="invalidUsernameOrPAss">Usuario ou senha inválidos!</string>
     <string name="access">Acesso concedido!</string>
+    <string name="save_username">Save username</string>
 </resources>
