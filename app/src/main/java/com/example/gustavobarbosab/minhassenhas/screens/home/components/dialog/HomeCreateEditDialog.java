@@ -50,29 +50,26 @@ public class HomeCreateEditDialog extends AlertDialog.Builder{
         });
     }
 
-    @Override
-    public AlertDialog.Builder setView(View view) {
-        super.setView(view);
+
+    public AlertDialog.Builder setPositiveButton(CharSequence text, final DialogInterface.OnClickListener listener) {
+        super.setPositiveButton(text,listener);
         return this;
     }
 
-    public TextView getNewSiteTxtEmail() {
-        return newSiteTxtEmail;
+    public String getEmail() {
+        return newSiteTxtEmail.getText().toString();
     }
 
-    public void setPositiveButtonEdit(){
-        /* When positive (yes/ok) is clicked */
-        this.setPositiveButton("Save", (dialog, which) -> {
-            Toast.makeText(this.getContext(),newSiteTxtEmail.getText().toString(),Toast.LENGTH_LONG).show();
-            dialog.cancel();
-        });
+
+    public String getName() {
+        return newSiteTxtName.getText().toString();
     }
 
-    public void setPositiveButtonCreate(){
-        /* When positive (yes/ok) is clicked */
-        this.setPositiveButton("Save", (dialog, which) -> {
-            Toast.makeText(this.getContext(),newSiteTxtEmail.getText().toString(),Toast.LENGTH_LONG).show();
-            dialog.cancel();
-        });
+    public String getPassword() {
+        return newSiteTxtPassword.getText().toString();
+    }
+
+    public String getUrl() {
+        return newSiteTxtUrl.getText().toString();
     }
 }

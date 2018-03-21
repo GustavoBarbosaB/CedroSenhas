@@ -48,8 +48,6 @@ public class HomeActivity extends AppCompatActivity
     @BindView(R.id.homeRecycler)
     RecyclerView recyclerView;
 
-    private AlertDialog alertDialogCreate;
-
     private SitesAdapter adapter;
 
     @Inject
@@ -98,19 +96,33 @@ public class HomeActivity extends AppCompatActivity
         toggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(this);
-
-        initAlertDialogCreate();
     }
 
-    private void initAlertDialogCreate() {
-        HomeCreateEditDialog alertDialogBuilder = new HomeCreateEditDialog(this);
-        alertDialogBuilder.setPositiveButtonCreate();
-        alertDialogCreate= alertDialogBuilder.create();
-    }
+
+/*
+    private void initAlertDialogEdit() {
+        alertDialogBuilderEdit = new HomeCreateEditDialog(this);
+        //TODO validar os valores dos campos
+        alertDialogBuilderEdit.setPositiveButton("Edit",(dialog, which) -> {
+            homePresenter.editSite(alertDialogBuilderEdit.getUrl(),
+                    alertDialogBuilderEdit.getName(),
+                    alertDialogBuilderEdit.getEmail(),
+                    alertDialogBuilderEdit.getPassword());
+            dialog.dismiss();
+
+        });
+    }*/
 
     @OnClick(R.id.fab)
     public void fabClick(View view){
-       alertDialogCreate.show();
+        HomeCreateEditDialog alertDialogBuilderCreate = new HomeCreateEditDialog(this);
+
+        alertDialogBuilderCreate.setPositiveButton("Save",(dialog, which) -> {
+            homePresenter.saveSite(alertDialogBuilderCreate.getUrl(),
+                                    alertDialogBuilderCreate.getName(),
+                                    alertDialogBuilderCreate.getEmail(),
+                                    alertDialogBuilderCreate.getPassword());
+        }).create().show();
     }
 
 
@@ -152,5 +164,9 @@ public class HomeActivity extends AppCompatActivity
 
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void showMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }
