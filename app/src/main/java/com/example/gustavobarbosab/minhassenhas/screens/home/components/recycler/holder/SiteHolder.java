@@ -1,12 +1,12 @@
-package com.example.gustavobarbosab.minhassenhas.screens.home.recycler.holder;
+package com.example.gustavobarbosab.minhassenhas.screens.home.components.recycler.holder;
 
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.gustavobarbosab.minhassenhas.R;
-import com.example.gustavobarbosab.minhassenhas.screens.home.recycler.item.BaseItem;
-import com.example.gustavobarbosab.minhassenhas.screens.home.recycler.item.SiteItem;
+import com.example.gustavobarbosab.minhassenhas.screens.home.components.recycler.item.BaseItem;
+import com.example.gustavobarbosab.minhassenhas.screens.home.components.recycler.item.SiteItem;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

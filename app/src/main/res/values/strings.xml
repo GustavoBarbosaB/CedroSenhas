@@ -24,4 +24,7 @@
     <string name="invalidUsernameOrPAss">Usuario ou senha inválidos!</string>
     <string name="access">Acesso concedido!</string>
     <string name="save_username">Save username</string>
+    <string name="title_activity_new_site">NewSiteActivity</string>
+    <string name="nome_do_site">Nome do site</string>
+    <string name="url_site">URL</string>
 </resources>

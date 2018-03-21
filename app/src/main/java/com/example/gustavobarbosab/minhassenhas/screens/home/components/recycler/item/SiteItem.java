@@ -1,7 +1,6 @@
-package com.example.gustavobarbosab.minhassenhas.screens.home.recycler.item;
+package com.example.gustavobarbosab.minhassenhas.screens.home.components.recycler.item;
 
 import com.example.gustavobarbosab.minhassenhas.domain.Site;
-import com.example.gustavobarbosab.minhassenhas.screens.home.recycler.holder.BaseHolder;
 
 /**
  * Created by gustavobarbosab on 18/03/18.

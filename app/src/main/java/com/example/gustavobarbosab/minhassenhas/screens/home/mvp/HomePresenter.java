@@ -4,9 +4,7 @@ import android.util.Log;
 
 import com.example.gustavobarbosab.minhassenhas.screens.BasePresenter;
 import com.example.gustavobarbosab.minhassenhas.screens.home.HomeActivity;
-import com.example.gustavobarbosab.minhassenhas.util.rx.RxScheduler;
-
-import io.reactivex.disposables.CompositeDisposable;
+import com.example.gustavobarbosab.minhassenhas.screens.home.components.recycler.SitesAdapter;
 
 /**
  * Created by gustavobarbosab on 16/03/18.
@@ -14,8 +12,16 @@ import io.reactivex.disposables.CompositeDisposable;
 
 public class HomePresenter implements BasePresenter{
 
-    public HomePresenter(HomeActivity homeActivity, HomeModel homeModel) {
+    private HomeActivity homeActivity;
+    private HomeModel homeModel;
 
+    public HomePresenter(HomeActivity homeActivity, HomeModel homeModel) {
+        this.homeActivity = homeActivity;
+        this.homeModel = homeModel;
+    }
+
+    public SitesAdapter mockAdapter(){
+        return homeModel.mockAdapter();
     }
 
     @Override

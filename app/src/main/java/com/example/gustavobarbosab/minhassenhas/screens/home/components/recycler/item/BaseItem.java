@@ -1,4 +1,4 @@
-package com.example.gustavobarbosab.minhassenhas.screens.home.recycler.item;
+package com.example.gustavobarbosab.minhassenhas.screens.home.components.recycler.item;
 
 import java.io.Serializable;
 

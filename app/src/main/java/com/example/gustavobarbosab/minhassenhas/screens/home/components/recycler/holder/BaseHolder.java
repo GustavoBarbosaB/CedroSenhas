@@ -1,9 +1,9 @@
-package com.example.gustavobarbosab.minhassenhas.screens.home.recycler.holder;
+package com.example.gustavobarbosab.minhassenhas.screens.home.components.recycler.holder;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.example.gustavobarbosab.minhassenhas.screens.home.recycler.item.BaseItem;
+import com.example.gustavobarbosab.minhassenhas.screens.home.components.recycler.item.BaseItem;
 
 /**
  * Created by gustavobarbosab on 18/03/18.
