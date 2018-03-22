@@ -25,7 +25,7 @@ public class HomePresenter implements BasePresenter{
     }
 
     public SitesAdapter mockAdapter(){
-        return homeModel.mockAdapter();
+        return homeModel.mockAdapter(homeActivity);
     }
 
     @Override

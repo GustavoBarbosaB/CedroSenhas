@@ -1,5 +1,7 @@
 package com.example.gustavobarbosab.minhassenhas.screens.home.components.recycler;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,7 @@ import com.example.gustavobarbosab.minhassenhas.R;
 import com.example.gustavobarbosab.minhassenhas.screens.home.components.recycler.holder.BaseHolder;
 import com.example.gustavobarbosab.minhassenhas.screens.home.components.recycler.holder.SiteHolder;
 import com.example.gustavobarbosab.minhassenhas.screens.home.components.recycler.item.BaseItem;
+import com.example.gustavobarbosab.minhassenhas.screens.site.SiteActivity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -21,11 +24,13 @@ import java.util.ArrayList;
 public class SitesAdapter extends RecyclerView.Adapter<BaseHolder> implements Serializable{
 
     private ArrayList<BaseItem> sites;
+    private Context context;
 
 
-    public SitesAdapter(ArrayList<BaseItem> sites) {
+    public SitesAdapter(ArrayList<BaseItem> sites,Context context) {
         //TODO Alterar para Base item
         this.sites = sites;
+        this.context = context;
     }
 
     @Override
@@ -48,10 +53,11 @@ public class SitesAdapter extends RecyclerView.Adapter<BaseHolder> implements Se
         BaseItem item = sites.get(position);
         holder.bindType(item);
         //TODO chamar a outra activity após criá-la
-        holder.itemView.setOnClickListener(view ->
-                Toast.makeText(view.getContext(),
-                                "Selected index " + position,
-                                Toast.LENGTH_LONG).show());
+        holder.itemView.setOnClickListener(view -> {
+            Intent intent = new Intent(context, SiteActivity.class);
+            intent.putExtra("teste",item);
+            context.startActivity(intent);
+        });
     }
 
     @Override
