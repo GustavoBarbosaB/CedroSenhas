@@ -1,5 +1,8 @@
 package com.example.gustavobarbosab.minhassenhas.app.builder;
 
+import android.content.Context;
+
+import com.example.gustavobarbosab.minhassenhas.helper.factory.DBFactorySite;
 import com.example.gustavobarbosab.minhassenhas.rest.api.UserApi;
 import com.example.gustavobarbosab.minhassenhas.util.rx.RxScheduler;
 
@@ -13,11 +16,11 @@ import dagger.Component;
 
 @PerApplication
 @Component(modules = {
+        AppModule.class,
         NetworkModule.class,
         RxSchedulerModule.class,
         EventBusModule.class,
         ApiModule.class,
-        AppModule.class,
 }
 )
 public interface AppComponent {

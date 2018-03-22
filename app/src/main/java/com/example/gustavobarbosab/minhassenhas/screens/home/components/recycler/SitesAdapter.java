@@ -9,9 +9,11 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.gustavobarbosab.minhassenhas.R;
+import com.example.gustavobarbosab.minhassenhas.domain.Site;
 import com.example.gustavobarbosab.minhassenhas.screens.home.components.recycler.holder.BaseHolder;
 import com.example.gustavobarbosab.minhassenhas.screens.home.components.recycler.holder.SiteHolder;
 import com.example.gustavobarbosab.minhassenhas.screens.home.components.recycler.item.BaseItem;
+import com.example.gustavobarbosab.minhassenhas.screens.home.components.recycler.item.SiteItem;
 import com.example.gustavobarbosab.minhassenhas.screens.site.SiteActivity;
 
 import java.io.Serializable;
@@ -23,11 +25,11 @@ import java.util.ArrayList;
 
 public class SitesAdapter extends RecyclerView.Adapter<BaseHolder> implements Serializable{
 
-    private ArrayList<BaseItem> sites;
+    private ArrayList<Site> sites;
     private Context context;
 
 
-    public SitesAdapter(ArrayList<BaseItem> sites,Context context) {
+    public SitesAdapter(ArrayList<Site> sites, Context context) {
         //TODO Alterar para Base item
         this.sites = sites;
         this.context = context;
@@ -50,9 +52,9 @@ public class SitesAdapter extends RecyclerView.Adapter<BaseHolder> implements Se
 
     @Override
     public void onBindViewHolder(BaseHolder holder, int position) {
-        BaseItem item = sites.get(position);
+        Site item = sites.get(position);
         holder.bindType(item);
-        //TODO chamar a outra activity após criá-la
+        //TODO chamar a outra activity após criá-la e passar site
         holder.itemView.setOnClickListener(view -> {
             Intent intent = new Intent(context, SiteActivity.class);
             intent.putExtra("teste",item);

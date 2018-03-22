@@ -19,10 +19,13 @@ import android.widget.Toast;
 import com.example.gustavobarbosab.minhassenhas.R;
 import com.example.gustavobarbosab.minhassenhas.app.MainApp;
 import com.example.gustavobarbosab.minhassenhas.screens.home.components.dialog.HomeCreateEditDialog;
+import com.example.gustavobarbosab.minhassenhas.screens.home.components.recycler.item.SiteItem;
 import com.example.gustavobarbosab.minhassenhas.screens.home.dagger.DaggerHomeComponent;
 import com.example.gustavobarbosab.minhassenhas.screens.home.dagger.HomeModule;
 import com.example.gustavobarbosab.minhassenhas.screens.home.mvp.HomePresenter;
 import com.example.gustavobarbosab.minhassenhas.screens.home.components.recycler.SitesAdapter;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -66,17 +69,12 @@ public class HomeActivity extends AppCompatActivity
                 .inject(this);
 
         configViews();
-        configRecycler();
+
         homePresenter.onCreate();
 
     }
 
-    private void configRecycler() {
-        adapter = homePresenter.mockAdapter();
-        recyclerView.setAdapter(adapter);
-        LinearLayoutManager mLayout= new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(mLayout);
-    }
+
 
 
 
@@ -96,22 +94,17 @@ public class HomeActivity extends AppCompatActivity
         toggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(this);
+
+        configRecycler();
     }
 
+    private void configRecycler() {
+        adapter = new SitesAdapter(homePresenter.getAllSites(),this);
+        recyclerView.setAdapter(adapter);
+        LinearLayoutManager mLayout= new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(mLayout);
+    }
 
-/*
-    private void initAlertDialogEdit() {
-        alertDialogBuilderEdit = new HomeCreateEditDialog(this);
-        //TODO validar os valores dos campos
-        alertDialogBuilderEdit.setPositiveButton("Edit",(dialog, which) -> {
-            homePresenter.editSite(alertDialogBuilderEdit.getUrl(),
-                    alertDialogBuilderEdit.getName(),
-                    alertDialogBuilderEdit.getEmail(),
-                    alertDialogBuilderEdit.getPassword());
-            dialog.dismiss();
-
-        });
-    }*/
 
     @OnClick(R.id.fab)
     public void fabClick(View view){
@@ -125,6 +118,9 @@ public class HomeActivity extends AppCompatActivity
         }).create().show();
     }
 
+    public void notifyDataChanged(){
+        adapter.notifyDataSetChanged();
+    }
 
     @Override
     public void onBackPressed() {

@@ -5,6 +5,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.gustavobarbosab.minhassenhas.R;
+import com.example.gustavobarbosab.minhassenhas.domain.Site;
 import com.example.gustavobarbosab.minhassenhas.screens.home.components.recycler.item.BaseItem;
 import com.example.gustavobarbosab.minhassenhas.screens.home.components.recycler.item.SiteItem;
 
@@ -29,9 +30,9 @@ public class SiteHolder extends BaseHolder{
     }
 
     @Override
-    public void bindType(BaseItem item) {
-        nameSite.setText(((SiteItem)item).getNome());
-        emailSite.setText(((SiteItem)item).getEmail());
+    public void bindType(Site item) {
+        nameSite.setText(item.getNome());
+        emailSite.setText(item.getEmail());
         /*Picasso.with(icon.getContext())
                 .load("URL aqui")
                 .into(icon);*/

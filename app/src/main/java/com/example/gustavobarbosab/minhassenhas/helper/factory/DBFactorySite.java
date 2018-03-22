@@ -18,10 +18,11 @@ public class DBFactorySite {
     private static DBFactorySite instance;
     private DatabaseHelper helper;
 
-    public static void init(Context ctx) {
+    public static DBFactorySite init(Context ctx) {
         if (null == instance) {
             instance = new DBFactorySite(ctx);
         }
+        return instance;
     }
 
     public static DBFactorySite getInstance() {

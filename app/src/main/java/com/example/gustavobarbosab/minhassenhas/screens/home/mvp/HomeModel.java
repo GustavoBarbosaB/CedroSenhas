@@ -1,5 +1,7 @@
 package com.example.gustavobarbosab.minhassenhas.screens.home.mvp;
 
+import com.example.gustavobarbosab.minhassenhas.domain.Site;
+import com.example.gustavobarbosab.minhassenhas.helper.factory.DBFactorySite;
 import com.example.gustavobarbosab.minhassenhas.screens.BaseModel;
 import com.example.gustavobarbosab.minhassenhas.screens.home.HomeActivity;
 import com.example.gustavobarbosab.minhassenhas.screens.home.components.recycler.SitesAdapter;
@@ -7,6 +9,7 @@ import com.example.gustavobarbosab.minhassenhas.screens.home.components.recycler
 import com.example.gustavobarbosab.minhassenhas.screens.home.components.recycler.item.SiteItem;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.reactivex.disposables.CompositeDisposable;
 
@@ -16,8 +19,15 @@ import io.reactivex.disposables.CompositeDisposable;
 
 public class HomeModel implements BaseModel {
     private CompositeDisposable compositeDisposable;
+    private DBFactorySite dbFactorySite;
+    private ArrayList<Site> sites = new ArrayList<>();
 
-    public SitesAdapter mockAdapter(HomeActivity activity) {
+    public HomeModel(CompositeDisposable compositeDisposable, DBFactorySite dbFactorySite) {
+        this.compositeDisposable = compositeDisposable;
+        this.dbFactorySite = dbFactorySite;
+    }
+
+  /*  public SitesAdapter mockAdapter(HomeActivity activity) {
         //TODO remover o mock
         ArrayList<BaseItem> sites = new ArrayList<>();
         sites.add(new SiteItem("","Google","gustavo@hotmail.com",""));
@@ -25,5 +35,16 @@ public class HomeModel implements BaseModel {
         sites.add(new SiteItem("","Gmail","gustavoanto@gmail.com",""));
         sites.add(new SiteItem("","Deezer","gustavotiao@femail.com",""));
         return new SitesAdapter(sites,activity);
+    }*/
+
+    public void saveSite(Site site) {
+        sites.add(site);
+        //TODO descomentar criação do site
+       // dbFactorySite.createOrUpdateSite(site);
+    }
+
+    public ArrayList<Site> getAllSites(){
+        //this.sites.addAll(dbFactorySite.findAllSite());
+        return sites;
     }
 }

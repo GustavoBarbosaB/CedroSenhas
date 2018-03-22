@@ -3,6 +3,7 @@ package com.example.gustavobarbosab.minhassenhas.screens.home.components.recycle
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.example.gustavobarbosab.minhassenhas.domain.Site;
 import com.example.gustavobarbosab.minhassenhas.screens.home.components.recycler.item.BaseItem;
 
 /**
@@ -15,5 +16,5 @@ public abstract class BaseHolder extends RecyclerView.ViewHolder{
         super(itemView);
     }
 
-    public abstract void bindType(BaseItem item);
+    public abstract void bindType(Site item);
 }

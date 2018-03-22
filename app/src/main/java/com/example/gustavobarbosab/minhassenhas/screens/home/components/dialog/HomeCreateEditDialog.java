@@ -72,4 +72,20 @@ public class HomeCreateEditDialog extends AlertDialog.Builder{
     public String getUrl() {
         return newSiteTxtUrl.getText().toString();
     }
+
+    public void setNewSiteTxtEmail(String newSiteTxtEmail) {
+        this.newSiteTxtEmail.setText(newSiteTxtEmail);
+    }
+
+    public void setNewSiteTxtName(String newSiteTxtName) {
+        this.newSiteTxtName.setText(newSiteTxtName);
+    }
+
+    public void setNewSiteTxtPassword(String newSiteTxtPassword) {
+        this.newSiteTxtPassword.setText(newSiteTxtPassword);
+    }
+
+    public void setNewSiteTxtUrl(String newSiteTxtUrl) {
+        this.newSiteTxtUrl.setText(newSiteTxtUrl);
+    }
 }
