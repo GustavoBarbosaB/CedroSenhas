@@ -57,7 +57,7 @@ public class SitesAdapter extends RecyclerView.Adapter<BaseHolder> implements Se
         //TODO chamar a outra activity após criá-la e passar site
         holder.itemView.setOnClickListener(view -> {
             Intent intent = new Intent(context, SiteActivity.class);
-            intent.putExtra("teste",item);
+            intent.putExtra("SITE",item);
             context.startActivity(intent);
         });
     }
