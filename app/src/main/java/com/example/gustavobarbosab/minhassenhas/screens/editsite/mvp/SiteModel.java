@@ -1,20 +1,8 @@
-package com.example.gustavobarbosab.minhassenhas.screens.site.mvp;
+package com.example.gustavobarbosab.minhassenhas.screens.editsite.mvp;
 
 import com.example.gustavobarbosab.minhassenhas.domain.Site;
 import com.example.gustavobarbosab.minhassenhas.helper.factory.AKSFactory;
 import com.example.gustavobarbosab.minhassenhas.helper.factory.DBFactorySite;
-
-import java.io.IOException;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
-import java.security.UnrecoverableEntryException;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 
 /**
  * Created by gustavobarbosab on 22/03/18.

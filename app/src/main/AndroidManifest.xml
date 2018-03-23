@@ -28,7 +28,7 @@
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".screens.site.SiteActivity"
+            android:name=".screens.editsite.SiteActivity"
             android:label="@string/title_activity_site"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>

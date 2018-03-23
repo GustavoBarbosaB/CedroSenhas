@@ -1,25 +1,17 @@
 package com.example.gustavobarbosab.minhassenhas.screens.home.components.dialog;
 
-import android.app.Dialog;
-import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.gustavobarbosab.minhassenhas.R;
 import com.example.gustavobarbosab.minhassenhas.domain.Site;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * Created by tqi-udi on 21/03/18.
@@ -27,17 +19,20 @@ import butterknife.Unbinder;
 
 public class HomeCreateEditDialog extends AlertDialog.Builder{
 
-    @BindView(R.id.newSiteTxtEmail)
-    TextView newSiteTxtEmail;
+    @BindView(R.id.titleDialogSite)
+    TextView siteTxtTitle;
 
-    @BindView(R.id.newSiteTxtName)
-    TextView newSiteTxtName;
+    @BindView(R.id.siteTxtEmail)
+    TextView siteTxtEmail;
 
-    @BindView(R.id.newSiteTxtPassword)
-    TextView newSiteTxtPassword;
+    @BindView(R.id.siteTxtName)
+    TextView siteTxtName;
 
-    @BindView(R.id.newSiteTxtUrl)
-    TextView newSiteTxtUrl;
+    @BindView(R.id.siteTxtPassword)
+    TextView siteTxtPassword;
+
+    @BindView(R.id.siteTxtUrl)
+    TextView siteTxtUrl;
 
     public HomeCreateEditDialog(@NonNull Context context) {
         super(context);
@@ -58,45 +53,50 @@ public class HomeCreateEditDialog extends AlertDialog.Builder{
     }
 
     public String getEmail() {
-        return newSiteTxtEmail.getText().toString();
+        return siteTxtEmail.getText().toString();
     }
 
 
     public String getName() {
-        String text = newSiteTxtName.getText().toString();
+        String text = siteTxtName.getText().toString();
         if(text.isEmpty())
-            newSiteTxtEmail.setError(getContext().getString(R.string.preencher_nome));
+            siteTxtEmail.setError(getContext().getString(R.string.preencher_nome));
         return text;
     }
 
     public String getPassword() {
-        return newSiteTxtPassword.getText().toString();
+        return siteTxtPassword.getText().toString();
     }
 
     public String getUrl() {
-        return newSiteTxtUrl.getText().toString();
+        return siteTxtUrl.getText().toString();
     }
 
-    public void setNewSiteTxtEmail(String newSiteTxtEmail) {
-        this.newSiteTxtEmail.setText(newSiteTxtEmail);
+    public void setSiteTxtEmail(String siteTxtEmail) {
+        this.siteTxtEmail.setText(siteTxtEmail);
     }
 
-    public void setNewSiteTxtName(String newSiteTxtName) {
-        this.newSiteTxtName.setText(newSiteTxtName);
+    public void setSiteTxtName(String siteTxtName) {
+        this.siteTxtName.setText(siteTxtName);
     }
 
-    public void setNewSiteTxtPassword(String newSiteTxtPassword) {
-        this.newSiteTxtPassword.setText(newSiteTxtPassword);
+    public void setSiteTxtPassword(String siteTxtPassword) {
+        this.siteTxtPassword.setText(siteTxtPassword);
     }
 
-    public void setNewSiteTxtUrl(String newSiteTxtUrl) {
-        this.newSiteTxtUrl.setText(newSiteTxtUrl);
+    public void setSiteTxtUrl(String siteTxtUrl) {
+        this.siteTxtUrl.setText(siteTxtUrl);
     }
 
-    public void setAllViews(Site site) {
-        setNewSiteTxtEmail(site.getEmail());
-        setNewSiteTxtUrl(site.getUrl());
-        setNewSiteTxtPassword(site.getPassword());
-        setNewSiteTxtName(site.getNome());
+    public void setSiteTxtTitle(String siteTxtTitle) {
+        this.siteTxtTitle.setText(siteTxtTitle);
+    }
+
+    public void setAllViews(Site site, String title) {
+        setSiteTxtTitle(title);
+        setSiteTxtEmail(site.getEmail());
+        setSiteTxtUrl(site.getUrl());
+        setSiteTxtPassword(site.getPassword());
+        setSiteTxtName(site.getNome());
     }
 }

@@ -6,17 +6,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.gustavobarbosab.minhassenhas.R;
 import com.example.gustavobarbosab.minhassenhas.domain.Site;
 import com.example.gustavobarbosab.minhassenhas.helper.SharedPreferencesHelper;
-import com.example.gustavobarbosab.minhassenhas.screens.home.HomeActivity;
 import com.example.gustavobarbosab.minhassenhas.screens.home.components.recycler.holder.BaseHolder;
 import com.example.gustavobarbosab.minhassenhas.screens.home.components.recycler.holder.SiteHolder;
-import com.example.gustavobarbosab.minhassenhas.screens.home.components.recycler.item.BaseItem;
-import com.example.gustavobarbosab.minhassenhas.screens.home.components.recycler.item.SiteItem;
-import com.example.gustavobarbosab.minhassenhas.screens.site.SiteActivity;
+import com.example.gustavobarbosab.minhassenhas.screens.editsite.SiteActivity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -29,13 +25,13 @@ public class SitesAdapter extends RecyclerView.Adapter<BaseHolder> implements Se
 
     private ArrayList<Site> sites = new ArrayList<>();
     private Context context;
-    private String TOKEN;
-    private String URL_SITE = "https://dev.people.com.ai/mobile/api/v2/logo/";
+    private String token;
+    private String url_site = "https://dev.people.com.ai/mobile/api/v2/logo/";
 
     public SitesAdapter( Context context) {
         this.context = context;
         String tokenid = context.getString(R.string.token_prefId);
-        this.TOKEN = SharedPreferencesHelper.getSharedPreferenceString(context,tokenid,null);
+        this.token = SharedPreferencesHelper.getSharedPreferenceString(context,tokenid,null);
     }
 
     public void setSites(ArrayList<Site> sites){
@@ -60,7 +56,7 @@ public class SitesAdapter extends RecyclerView.Adapter<BaseHolder> implements Se
     @Override
     public void onBindViewHolder(BaseHolder holder, int position) {
         Site item = sites.get(position);
-        holder.bindType(item,TOKEN,URL_SITE+item.getUrl());
+        holder.bindType(item, token, url_site +item.getUrl());
         holder.itemView.setOnClickListener(view -> {
             Intent intent = new Intent(context, SiteActivity.class);
             intent.putExtra("SITE",item);

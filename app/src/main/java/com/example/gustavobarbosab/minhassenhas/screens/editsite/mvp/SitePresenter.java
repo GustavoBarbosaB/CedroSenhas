@@ -1,10 +1,10 @@
-package com.example.gustavobarbosab.minhassenhas.screens.site.mvp;
+package com.example.gustavobarbosab.minhassenhas.screens.editsite.mvp;
 
 import android.util.Log;
 
 import com.example.gustavobarbosab.minhassenhas.domain.Site;
 import com.example.gustavobarbosab.minhassenhas.screens.BasePresenter;
-import com.example.gustavobarbosab.minhassenhas.screens.site.SiteActivity;
+import com.example.gustavobarbosab.minhassenhas.screens.editsite.SiteActivity;
 
 /**
  * Created by gustavobarbosab on 22/03/18.

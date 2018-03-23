@@ -1,16 +1,13 @@
-package com.example.gustavobarbosab.minhassenhas.screens.site.dagger;
+package com.example.gustavobarbosab.minhassenhas.screens.editsite.dagger;
 
 import com.example.gustavobarbosab.minhassenhas.helper.factory.AKSFactory;
 import com.example.gustavobarbosab.minhassenhas.helper.factory.DBFactorySite;
-import com.example.gustavobarbosab.minhassenhas.screens.home.HomeActivity;
-import com.example.gustavobarbosab.minhassenhas.screens.home.mvp.HomeModel;
-import com.example.gustavobarbosab.minhassenhas.screens.site.SiteActivity;
-import com.example.gustavobarbosab.minhassenhas.screens.site.mvp.SiteModel;
-import com.example.gustavobarbosab.minhassenhas.screens.site.mvp.SitePresenter;
+import com.example.gustavobarbosab.minhassenhas.screens.editsite.SiteActivity;
+import com.example.gustavobarbosab.minhassenhas.screens.editsite.mvp.SiteModel;
+import com.example.gustavobarbosab.minhassenhas.screens.editsite.mvp.SitePresenter;
 
 import dagger.Module;
 import dagger.Provides;
-import io.reactivex.disposables.CompositeDisposable;
 
 /**
  * Created by gustavobarbosab on 22/03/18.

@@ -1,29 +1,28 @@
 package com.example.gustavobarbosab.minhassenhas.screens.home;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.gustavobarbosab.minhassenhas.R;
 import com.example.gustavobarbosab.minhassenhas.app.MainApp;
 import com.example.gustavobarbosab.minhassenhas.screens.home.components.dialog.HomeCreateEditDialog;
+import com.example.gustavobarbosab.minhassenhas.screens.home.components.recycler.SitesAdapter;
 import com.example.gustavobarbosab.minhassenhas.screens.home.dagger.DaggerHomeComponent;
 import com.example.gustavobarbosab.minhassenhas.screens.home.dagger.HomeModule;
 import com.example.gustavobarbosab.minhassenhas.screens.home.mvp.HomePresenter;
-import com.example.gustavobarbosab.minhassenhas.screens.home.components.recycler.SitesAdapter;
 import com.example.gustavobarbosab.minhassenhas.screens.login.LoginActivity;
 
 import javax.inject.Inject;
@@ -84,7 +83,7 @@ public class HomeActivity extends AppCompatActivity
         setContentView(R.layout.activity_home);
 
         ButterKnife.bind(this);
-
+        toolbar.setTitle("");
         setSupportActionBar(toolbar);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -157,6 +156,8 @@ public class HomeActivity extends AppCompatActivity
                 break;
             case R.id.nav_manage:
                 Toast.makeText(this, "Manager clicked", Toast.LENGTH_SHORT).show();
+                break;
+            default:
                 break;
 
         }

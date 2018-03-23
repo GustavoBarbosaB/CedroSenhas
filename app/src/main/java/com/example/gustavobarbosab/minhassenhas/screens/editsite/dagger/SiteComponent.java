@@ -1,8 +1,7 @@
-package com.example.gustavobarbosab.minhassenhas.screens.site.dagger;
+package com.example.gustavobarbosab.minhassenhas.screens.editsite.dagger;
 
 import com.example.gustavobarbosab.minhassenhas.app.builder.AppComponent;
-import com.example.gustavobarbosab.minhassenhas.screens.home.dagger.HomeModule;
-import com.example.gustavobarbosab.minhassenhas.screens.site.SiteActivity;
+import com.example.gustavobarbosab.minhassenhas.screens.editsite.SiteActivity;
 
 import dagger.Component;
 

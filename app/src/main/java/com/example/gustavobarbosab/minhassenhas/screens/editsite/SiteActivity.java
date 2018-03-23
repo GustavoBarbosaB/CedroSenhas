@@ -1,10 +1,7 @@
-package com.example.gustavobarbosab.minhassenhas.screens.site;
+package com.example.gustavobarbosab.minhassenhas.screens.editsite;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -14,7 +11,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.gustavobarbosab.minhassenhas.R;
@@ -23,10 +19,9 @@ import com.example.gustavobarbosab.minhassenhas.domain.Site;
 import com.example.gustavobarbosab.minhassenhas.helper.GlideHelper;
 import com.example.gustavobarbosab.minhassenhas.helper.SharedPreferencesHelper;
 import com.example.gustavobarbosab.minhassenhas.screens.home.components.dialog.HomeCreateEditDialog;
-import com.example.gustavobarbosab.minhassenhas.screens.home.dagger.DaggerHomeComponent;
-import com.example.gustavobarbosab.minhassenhas.screens.site.dagger.DaggerSiteComponent;
-import com.example.gustavobarbosab.minhassenhas.screens.site.dagger.SiteModule;
-import com.example.gustavobarbosab.minhassenhas.screens.site.mvp.SitePresenter;
+import com.example.gustavobarbosab.minhassenhas.screens.editsite.dagger.DaggerSiteComponent;
+import com.example.gustavobarbosab.minhassenhas.screens.editsite.dagger.SiteModule;
+import com.example.gustavobarbosab.minhassenhas.screens.editsite.mvp.SitePresenter;
 
 import javax.inject.Inject;
 
@@ -77,23 +72,23 @@ public class SiteActivity extends AppCompatActivity {
     }
 
     private void configGlide() {
-        String URL_SITE = "https://dev.people.com.ai/mobile/api/v2/logo/"+sitePresenter.getSite().getUrl();
+        String url_site = "https://dev.people.com.ai/mobile/api/v2/logo/"+sitePresenter.getSite().getUrl();
         String tokenid = this.getString(R.string.token_prefId);
-        String TOKEN = SharedPreferencesHelper.getSharedPreferenceString(this,tokenid,null);
+        String token = SharedPreferencesHelper.getSharedPreferenceString(this,tokenid,null);
         Glide.with(image.getContext())
-                .load(GlideHelper.getUrlWithHeaders(URL_SITE,TOKEN))
+                .load(GlideHelper.getUrlWithHeaders(url_site,token))
                 .into(image);
     }
 
     @OnClick(R.id.fab)
-    public void fabClick(){
+    public void fabClick(View view){
         showDialog();
     }
 
     public void showDialog(){
         HomeCreateEditDialog alertDialogBuilderCreate = new HomeCreateEditDialog(this);
 
-        alertDialogBuilderCreate.setAllViews(sitePresenter.getSite());
+        alertDialogBuilderCreate.setAllViews(sitePresenter.getSite(),"Edit Site");
 
         alertDialogBuilderCreate.setPositiveButton("Edit",(dialog, which) -> {
             sitePresenter.editSite(alertDialogBuilderCreate.getUrl(),
@@ -146,23 +141,13 @@ public class SiteActivity extends AppCompatActivity {
         return true;
     }
 
-    @OnClick(R.id.fab)
-    public void fabClick(View v){
-        //TODO implementar edição de site
-        Snackbar.make(v, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            // action with ID action_refresh was selected
-            case R.id.site_delete:
-                sitePresenter.deleteSite();
-                finish();
-                break;
-            default:
-                break;
+
+        if (item.getItemId() == R.id.site_delete) {
+            sitePresenter.deleteSite();
+            finish();
+
         }
 
         return super.onOptionsItemSelected(item);

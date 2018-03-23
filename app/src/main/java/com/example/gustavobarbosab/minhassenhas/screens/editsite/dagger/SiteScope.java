@@ -1,4 +1,4 @@
-package com.example.gustavobarbosab.minhassenhas.screens.site.dagger;
+package com.example.gustavobarbosab.minhassenhas.screens.editsite.dagger;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

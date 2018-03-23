@@ -5,7 +5,6 @@ import com.example.gustavobarbosab.minhassenhas.helper.factory.DBFactorySite;
 import com.example.gustavobarbosab.minhassenhas.screens.home.HomeActivity;
 import com.example.gustavobarbosab.minhassenhas.screens.home.mvp.HomeModel;
 import com.example.gustavobarbosab.minhassenhas.screens.home.mvp.HomePresenter;
-import com.example.gustavobarbosab.minhassenhas.screens.site.SiteActivity;
 
 import dagger.Module;
 import dagger.Provides;
