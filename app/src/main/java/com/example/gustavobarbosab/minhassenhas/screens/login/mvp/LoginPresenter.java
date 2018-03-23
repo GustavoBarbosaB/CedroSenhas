@@ -74,7 +74,6 @@ public class LoginPresenter implements BasePresenter {
 
     }
 
-
     public void login(String username, String password) {
         EnumUserPassValidator validator = loginModel.startLogin( username,  password);
         if(!validator.equals(EnumUserPassValidator.OK))
@@ -101,5 +100,14 @@ public class LoginPresenter implements BasePresenter {
     public void removeEmail() {
         String emailId = loginActivity.getString(R.string.email_prefId);
         removeSharedPreference(loginActivity,emailId);
+    }
+
+    public void registerUser(String name, String email, String password) {
+        if (loginModel.validaEmail(email)&&loginModel.validaPassword(password)) {
+            loginModel.registerUser(name, email, password);
+        } else {
+            loginActivity.messageSnack(R.string.preencha_campos);
+
+        }
     }
 }

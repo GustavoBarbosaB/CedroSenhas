@@ -34,19 +34,38 @@ public class LoginService {
         mCompositeDisposable.add(userApi.loginUser(user)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(this::handleResponse,this::handleError));
+                .subscribe(this::loginResponse,this::loginError));
         Log.d(this.getClass().getName(),"Tentativa de login");
     }
 
-    private void handleResponse(TokenResponse token) {
+    private void loginResponse(TokenResponse token) {
         Log.d(this.getClass().getName(),"OK");
         Log.d(this.getClass().getName(),token.getAccessToken());
         eventBus.post(token);
     }
 
-    private void handleError(Throwable error) {
+    private void loginError(Throwable error) {
         Log.d(this.getClass().getName(),error.getMessage());
         eventBus.post(error.getMessage().trim().equals("HTTP 403")?
                 R.string.invalidUsernameOrPAss:R.string.bemVindo);
+    }
+
+    public void registerUser(User user){
+        mCompositeDisposable.add(userApi.registerUser(user)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(this::registerResponse,this::registerError));
+        Log.d(this.getClass().getName(),"Criação de usuario!");
+    }
+
+    private void registerResponse(TokenResponse token) {
+        Log.d(this.getClass().getName(),"OK");
+        Log.d(this.getClass().getName(),token.getAccessToken());
+        eventBus.post(R.string.usuario_criado_sucesso);
+    }
+
+    private void registerError(Throwable error) {
+        Log.d(this.getClass().getName(),error.getMessage());
+        eventBus.post(R.string.erro_criar_usuario);
     }
 }

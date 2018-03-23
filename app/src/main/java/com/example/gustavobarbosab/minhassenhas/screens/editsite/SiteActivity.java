@@ -1,5 +1,8 @@
 package com.example.gustavobarbosab.minhassenhas.screens.editsite;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +14,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.gustavobarbosab.minhassenhas.R;
@@ -96,6 +100,7 @@ public class SiteActivity extends AppCompatActivity {
                     alertDialogBuilderCreate.getEmail(),
                     alertDialogBuilderCreate.getPassword());
             finish();
+            Toast.makeText(this,"Editado com sucesso!",Toast.LENGTH_SHORT).show();
         }).create().show();
     }
 
@@ -134,6 +139,14 @@ public class SiteActivity extends AppCompatActivity {
         edUrl.setText(url);
     }
 
+    @OnClick(R.id.siteViewPassword)
+    public void copyPassword(){
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText("Texto copiado", edPassword.getText().toString());
+        clipboard.setPrimaryClip(clip);
+        Toast.makeText(this,"Copiado para área de transferencia!",Toast.LENGTH_SHORT).show();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -149,7 +162,6 @@ public class SiteActivity extends AppCompatActivity {
             finish();
 
         }
-
         return super.onOptionsItemSelected(item);
     }
 

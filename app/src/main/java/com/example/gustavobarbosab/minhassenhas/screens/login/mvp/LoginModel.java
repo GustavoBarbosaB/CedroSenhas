@@ -1,5 +1,7 @@
 package com.example.gustavobarbosab.minhassenhas.screens.login.mvp;
 
+import android.util.Log;
+
 import com.example.gustavobarbosab.minhassenhas.domain.TokenResponse;
 import com.example.gustavobarbosab.minhassenhas.domain.User;
 import com.example.gustavobarbosab.minhassenhas.rest.service.LoginService;
@@ -44,4 +46,7 @@ public class LoginModel implements BaseModel {
     }
 
 
+    public void registerUser(String name, String email, String password) {
+        loginService.registerUser(new User(name,email,password));
+    }
 }

@@ -18,6 +18,8 @@ import android.widget.TextView;
 import com.example.gustavobarbosab.minhassenhas.R;
 import com.example.gustavobarbosab.minhassenhas.app.MainApp;
 import com.example.gustavobarbosab.minhassenhas.screens.home.HomeActivity;
+import com.example.gustavobarbosab.minhassenhas.screens.home.components.dialog.HomeCreateEditDialog;
+import com.example.gustavobarbosab.minhassenhas.screens.login.components.dialog.AccountDialog;
 import com.example.gustavobarbosab.minhassenhas.screens.login.dagger.DaggerLoginComponent;
 import com.example.gustavobarbosab.minhassenhas.screens.login.dagger.LoginModule;
 import com.example.gustavobarbosab.minhassenhas.screens.login.mvp.LoginPresenter;
@@ -81,8 +83,13 @@ public class LoginActivity extends AppCompatActivity{
 
     @OnClick(R.id.login_create_account)
     public void createAccount(){
-        //Todo implementar chamada da activity de criar a conta
-        messageSnack(R.string.bemVindo);
+        AccountDialog dialogBuilder = new AccountDialog(this);
+
+        dialogBuilder.setPositiveButton("Create",(dialog, which) -> {
+            loginPresenter.registerUser(dialogBuilder.getName(),
+                                        dialogBuilder.getEmail(),
+                                        dialogBuilder.getPassword());
+        }).create().show();
     }
 
     @OnClick(R.id.loginCheckSave)
