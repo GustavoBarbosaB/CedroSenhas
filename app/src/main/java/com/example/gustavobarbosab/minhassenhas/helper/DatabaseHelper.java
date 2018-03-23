@@ -22,7 +22,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     private static final String dataBaseName = "cedroSenhas.sqlite";
 
-    private static final int dataBaseVersion = 1;
+    private static final int dataBaseVersion = 2;
 
     private Dao<Site, Integer> siteDao = null;
 

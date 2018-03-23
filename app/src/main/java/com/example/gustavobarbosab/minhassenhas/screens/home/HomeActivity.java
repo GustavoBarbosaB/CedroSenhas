@@ -1,9 +1,10 @@
 package com.example.gustavobarbosab.minhassenhas.screens.home;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -19,13 +20,11 @@ import android.widget.Toast;
 import com.example.gustavobarbosab.minhassenhas.R;
 import com.example.gustavobarbosab.minhassenhas.app.MainApp;
 import com.example.gustavobarbosab.minhassenhas.screens.home.components.dialog.HomeCreateEditDialog;
-import com.example.gustavobarbosab.minhassenhas.screens.home.components.recycler.item.SiteItem;
 import com.example.gustavobarbosab.minhassenhas.screens.home.dagger.DaggerHomeComponent;
 import com.example.gustavobarbosab.minhassenhas.screens.home.dagger.HomeModule;
 import com.example.gustavobarbosab.minhassenhas.screens.home.mvp.HomePresenter;
 import com.example.gustavobarbosab.minhassenhas.screens.home.components.recycler.SitesAdapter;
-
-import java.util.List;
+import com.example.gustavobarbosab.minhassenhas.screens.login.LoginActivity;
 
 import javax.inject.Inject;
 
@@ -69,13 +68,16 @@ public class HomeActivity extends AppCompatActivity
                 .inject(this);
 
         configViews();
-
         homePresenter.onCreate();
-
     }
 
+    @Override
+    protected void onResume(){
+        super.onResume();
+        adapter.setSites(homePresenter.getAllSites());
+        adapter.notifyDataSetChanged();
 
-
+    }
 
 
     public void configViews(){
@@ -99,7 +101,7 @@ public class HomeActivity extends AppCompatActivity
     }
 
     private void configRecycler() {
-        adapter = new SitesAdapter(homePresenter.getAllSites(),this);
+        adapter = new SitesAdapter(this);
         recyclerView.setAdapter(adapter);
         LinearLayoutManager mLayout= new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayout);
@@ -108,17 +110,21 @@ public class HomeActivity extends AppCompatActivity
 
     @OnClick(R.id.fab)
     public void fabClick(View view){
+        showDialog();
+    }
+
+    public void showDialog(){
         HomeCreateEditDialog alertDialogBuilderCreate = new HomeCreateEditDialog(this);
 
         alertDialogBuilderCreate.setPositiveButton("Save",(dialog, which) -> {
             homePresenter.saveSite(alertDialogBuilderCreate.getUrl(),
-                                    alertDialogBuilderCreate.getName(),
-                                    alertDialogBuilderCreate.getEmail(),
-                                    alertDialogBuilderCreate.getPassword());
+                    alertDialogBuilderCreate.getName(),
+                    alertDialogBuilderCreate.getEmail(),
+                    alertDialogBuilderCreate.getPassword());
         }).create().show();
     }
 
-    public void notifyDataChanged(){
+    public void notifyChanged(){
         adapter.notifyDataSetChanged();
     }
 
@@ -138,26 +144,22 @@ public class HomeActivity extends AppCompatActivity
         int id = item.getItemId();
 
         switch (id) {
-            case R.id.nav_camera:
-                Toast.makeText(this, "Camera clicado", Toast.LENGTH_SHORT).show();
+            case R.id.nav_logout:
+                Intent intent = new Intent(this, LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
                 break;
-            case R.id.nav_gallery:
-                Toast.makeText(this, "Gallery clicado", Toast.LENGTH_SHORT).show();
+            case R.id.nav_about:
+                Toast.makeText(this, "About app", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.nav_slideshow:
-                Toast.makeText(this, "Slide clicado", Toast.LENGTH_SHORT).show();
+            case R.id.nav_new_site:
+                showDialog();
                 break;
             case R.id.nav_manage:
-                Toast.makeText(this, "Manager clicado", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Manager clicked", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.nav_share:
-                Toast.makeText(this, "Share clicado", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.nav_send:
-                Toast.makeText(this, "Send clicado", Toast.LENGTH_SHORT).show();
-                break;
-        }
 
+        }
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

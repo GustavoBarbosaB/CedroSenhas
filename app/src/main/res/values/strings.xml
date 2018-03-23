@@ -28,4 +28,13 @@
     <string name="nome_do_site">Nome do site</string>
     <string name="url_site">URL</string>
     <string name="title_activity_site">SiteActivity</string>
+    <string name="logout">Logout</string>
+    <string name="account">Account</string>
+    <string name="new_site">New Site</string>
+    <string name="settings">Settings</string>
+    <string name="about">About</string>
+    <string name="create_now">Create now!</string>
+    <string name="no_account_yet">No account yet?</string>
+    <string name="use_fingerprint_sensor_to_login">use fingerprint sensor to login</string>
+    <string name="preencher_nome">O nome deve ser preenchido!</string>
 </resources>

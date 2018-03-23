@@ -4,10 +4,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.gustavobarbosab.minhassenhas.R;
 import com.example.gustavobarbosab.minhassenhas.domain.Site;
-import com.example.gustavobarbosab.minhassenhas.screens.home.components.recycler.item.BaseItem;
-import com.example.gustavobarbosab.minhassenhas.screens.home.components.recycler.item.SiteItem;
+import com.example.gustavobarbosab.minhassenhas.helper.GlideHelper;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,7 +20,7 @@ public class SiteHolder extends BaseHolder{
     @BindView(R.id.homeCardTxtNomeSite)
     TextView nameSite;
     @BindView(R.id.homeCardTxtEmailSite)
-    TextView emailSite;
+    TextView urlSite;
     @BindView(R.id.homeCardImageSite)
     ImageView icon;
 
@@ -30,13 +30,11 @@ public class SiteHolder extends BaseHolder{
     }
 
     @Override
-    public void bindType(Site item) {
+    public void bindType(Site item,String Token, String URL_IMAGE) {
         nameSite.setText(item.getNome());
-        emailSite.setText(item.getEmail());
-        /*Picasso.with(icon.getContext())
-                .load("URL aqui")
-                .into(icon);*/
-
-        /*TODO Adicionar Glide com o header correto*/
+        urlSite.setText(item.getUrl());
+        Glide.with(icon.getContext())
+                .load(GlideHelper.getUrlWithHeaders(URL_IMAGE,Token ))
+                .into(icon);
     }
 }

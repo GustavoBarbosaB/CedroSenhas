@@ -1,5 +1,6 @@
 package com.example.gustavobarbosab.minhassenhas.screens.login;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,9 +13,11 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.example.gustavobarbosab.minhassenhas.R;
 import com.example.gustavobarbosab.minhassenhas.app.MainApp;
+import com.example.gustavobarbosab.minhassenhas.screens.home.HomeActivity;
 import com.example.gustavobarbosab.minhassenhas.screens.login.dagger.DaggerLoginComponent;
 import com.example.gustavobarbosab.minhassenhas.screens.login.dagger.LoginModule;
 import com.example.gustavobarbosab.minhassenhas.screens.login.mvp.LoginPresenter;
@@ -74,33 +77,27 @@ public class LoginActivity extends AppCompatActivity{
         changeCheckBox(false);
     }
 
+
+
+    @OnClick(R.id.login_create_account)
+    public void createAccount(){
+        //Todo implementar chamada da activity de criar a conta
+        messageSnack(R.string.bemVindo);
+    }
+
+    @OnClick(R.id.loginCheckSave)
+    public void saveEmailCheck(){
+        if(checkBox.isChecked()){
+            loginPresenter.saveEmail(mEmailView.getText().toString());
+        }else
+            loginPresenter.removeEmail();
+    }
+
     @OnClick(R.id.email_sign_in_button)
     public void emailBtSignIn(){
         loginPresenter.login(mEmailView.getText().toString(),mPasswordView.getText().toString());
     }
 
-    public void messageSnack(Integer message) {
-        Snackbar.make(findViewById(R.id.login_layout), getString(message), Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
-    }
-
-    public void usernameError(Integer msg){
-        mEmailView.setError(getString(msg));
-        mEmailView.setFocusable(true);
-    }
-    public void passwordError(Integer msg){
-        mPasswordView.setError(getString(msg));
-        mPasswordView.setFocusable(true);
-    }
-
-    public void startLoading() {
-        mProgressView.setVisibility(View.VISIBLE);
-    }
-
-    public void stopLoading() {
-        mProgressView.setVisibility(View.GONE);
-
-    }
 
     private boolean mayRequestInternetAccess() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
@@ -129,14 +126,31 @@ public class LoginActivity extends AppCompatActivity{
         }
 
     }
-    @OnClick(R.id.loginCheckSave)
-    public void saveEmailCheck(){
-        if(checkBox.isChecked()){
-            loginPresenter.saveEmail(mEmailView.getText().toString());
-        }else
-            loginPresenter.removeEmail();
+
+    public void messageSnack(Integer message) {
+        Snackbar.make(findViewById(R.id.login_layout), getString(message), Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
     }
 
+    public void usernameError(Integer msg){
+        mEmailView.setError(getString(msg));
+        mEmailView.setFocusable(true);
+    }
+    public void passwordError(Integer msg){
+        mPasswordView.setError(getString(msg));
+        mPasswordView.setFocusable(true);
+    }
+
+    public void startLoading() {
+        mProgressView.setVisibility(View.VISIBLE);
+        mEmailSignInButton.setVisibility(View.GONE);
+    }
+
+    public void stopLoading() {
+        mProgressView.setVisibility(View.GONE);
+        mEmailSignInButton.setVisibility(View.VISIBLE);
+
+    }
 
     public void changeTextEmail(String textEmail) {
         mEmailView.setText(textEmail);
@@ -144,6 +158,12 @@ public class LoginActivity extends AppCompatActivity{
 
     public void changeCheckBox(boolean b) {
         checkBox.setChecked(b);
+    }
+
+    public void showHomeActivity(Class<HomeActivity> activityClass) {
+        Intent intent = new Intent(this,activityClass);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 }
 

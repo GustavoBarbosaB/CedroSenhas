@@ -1,6 +1,5 @@
 package com.example.gustavobarbosab.minhassenhas.screens.login.mvp;
 
-import android.content.Intent;
 import android.util.Log;
 
 import com.example.gustavobarbosab.minhassenhas.R;
@@ -70,7 +69,7 @@ public class LoginPresenter implements BasePresenter {
 
         setSharedPreferenceString(loginActivity,tokenid,token.getAccessToken());
 
-        loginActivity.startActivity(new Intent(loginActivity, HomeActivity.class));
+        loginActivity.showHomeActivity(HomeActivity.class);
         loginActivity.stopLoading();
 
     }

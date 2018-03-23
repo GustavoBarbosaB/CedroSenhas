@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gustavobarbosab.minhassenhas.R;
+import com.example.gustavobarbosab.minhassenhas.domain.Site;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -62,7 +63,10 @@ public class HomeCreateEditDialog extends AlertDialog.Builder{
 
 
     public String getName() {
-        return newSiteTxtName.getText().toString();
+        String text = newSiteTxtName.getText().toString();
+        if(text.isEmpty())
+            newSiteTxtEmail.setError(getContext().getString(R.string.preencher_nome));
+        return text;
     }
 
     public String getPassword() {
@@ -87,5 +91,12 @@ public class HomeCreateEditDialog extends AlertDialog.Builder{
 
     public void setNewSiteTxtUrl(String newSiteTxtUrl) {
         this.newSiteTxtUrl.setText(newSiteTxtUrl);
+    }
+
+    public void setAllViews(Site site) {
+        setNewSiteTxtEmail(site.getEmail());
+        setNewSiteTxtUrl(site.getUrl());
+        setNewSiteTxtPassword(site.getPassword());
+        setNewSiteTxtName(site.getNome());
     }
 }

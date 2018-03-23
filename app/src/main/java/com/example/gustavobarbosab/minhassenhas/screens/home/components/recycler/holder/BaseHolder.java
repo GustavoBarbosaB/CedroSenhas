@@ -16,5 +16,5 @@ public abstract class BaseHolder extends RecyclerView.ViewHolder{
         super(itemView);
     }
 
-    public abstract void bindType(Site item);
+    public abstract void bindType(Site item, String token, String URL_SITE);
 }

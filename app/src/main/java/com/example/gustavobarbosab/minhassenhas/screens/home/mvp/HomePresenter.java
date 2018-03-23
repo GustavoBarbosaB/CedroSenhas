@@ -1,20 +1,13 @@
 package com.example.gustavobarbosab.minhassenhas.screens.home.mvp;
 
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
-import android.widget.Toast;
 
+import com.example.gustavobarbosab.minhassenhas.R;
 import com.example.gustavobarbosab.minhassenhas.domain.Site;
 import com.example.gustavobarbosab.minhassenhas.screens.BasePresenter;
 import com.example.gustavobarbosab.minhassenhas.screens.home.HomeActivity;
-import com.example.gustavobarbosab.minhassenhas.screens.home.components.dialog.HomeCreateEditDialog;
-import com.example.gustavobarbosab.minhassenhas.screens.home.components.recycler.SitesAdapter;
-import com.example.gustavobarbosab.minhassenhas.screens.home.components.recycler.item.BaseItem;
-import com.example.gustavobarbosab.minhassenhas.screens.home.components.recycler.item.SiteItem;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 /**
  * Created by gustavobarbosab on 16/03/18.
@@ -51,11 +44,10 @@ public class HomePresenter implements BasePresenter{
         if(!nome.isEmpty()) {
             Site site = new Site(url, nome, email, password);
             homeModel.saveSite(site);
-            homeActivity.notifyDataChanged();
-        }//TODO checagem para ver se o nome é vazio
-    }
-
-    public void editSite(String url, String name, String email, String password) {
+            homeActivity.notifyChanged();
+            homeActivity.showMessage("Salvo com sucesso!");
+        }else
+            homeActivity.showMessage(homeActivity.getString(R.string.preencher_nome));
     }
 
     public ArrayList<Site> getAllSites() {

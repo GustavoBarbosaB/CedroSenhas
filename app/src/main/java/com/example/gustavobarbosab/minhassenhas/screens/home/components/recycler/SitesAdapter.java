@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import com.example.gustavobarbosab.minhassenhas.R;
 import com.example.gustavobarbosab.minhassenhas.domain.Site;
+import com.example.gustavobarbosab.minhassenhas.helper.SharedPreferencesHelper;
+import com.example.gustavobarbosab.minhassenhas.screens.home.HomeActivity;
 import com.example.gustavobarbosab.minhassenhas.screens.home.components.recycler.holder.BaseHolder;
 import com.example.gustavobarbosab.minhassenhas.screens.home.components.recycler.holder.SiteHolder;
 import com.example.gustavobarbosab.minhassenhas.screens.home.components.recycler.item.BaseItem;
@@ -25,14 +27,19 @@ import java.util.ArrayList;
 
 public class SitesAdapter extends RecyclerView.Adapter<BaseHolder> implements Serializable{
 
-    private ArrayList<Site> sites;
+    private ArrayList<Site> sites = new ArrayList<>();
     private Context context;
+    private String TOKEN;
+    private String URL_SITE = "https://dev.people.com.ai/mobile/api/v2/logo/";
 
-
-    public SitesAdapter(ArrayList<Site> sites, Context context) {
-        //TODO Alterar para Base item
-        this.sites = sites;
+    public SitesAdapter( Context context) {
         this.context = context;
+        String tokenid = context.getString(R.string.token_prefId);
+        this.TOKEN = SharedPreferencesHelper.getSharedPreferenceString(context,tokenid,null);
+    }
+
+    public void setSites(ArrayList<Site> sites){
+        this.sites=sites;
     }
 
     @Override
@@ -53,8 +60,7 @@ public class SitesAdapter extends RecyclerView.Adapter<BaseHolder> implements Se
     @Override
     public void onBindViewHolder(BaseHolder holder, int position) {
         Site item = sites.get(position);
-        holder.bindType(item);
-        //TODO chamar a outra activity após criá-la e passar site
+        holder.bindType(item,TOKEN,URL_SITE+item.getUrl());
         holder.itemView.setOnClickListener(view -> {
             Intent intent = new Intent(context, SiteActivity.class);
             intent.putExtra("SITE",item);

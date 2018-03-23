@@ -1,9 +1,23 @@
 package com.example.gustavobarbosab.minhassenhas.screens.home.mvp;
 
 import com.example.gustavobarbosab.minhassenhas.domain.Site;
+import com.example.gustavobarbosab.minhassenhas.helper.factory.AKSFactory;
 import com.example.gustavobarbosab.minhassenhas.helper.factory.DBFactorySite;
 import com.example.gustavobarbosab.minhassenhas.screens.BaseModel;
+
+import java.io.IOException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+import java.security.SignatureException;
+import java.security.UnrecoverableEntryException;
 import java.util.ArrayList;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 
 import io.reactivex.disposables.CompositeDisposable;
 
@@ -16,21 +30,24 @@ public class HomeModel implements BaseModel {
     private CompositeDisposable compositeDisposable;
     private DBFactorySite dbFactorySite;
     private ArrayList<Site> sites = new ArrayList<>();
+    private AKSFactory aksFactory;
 
-    public HomeModel(CompositeDisposable compositeDisposable, DBFactorySite dbFactorySite) {
+    public HomeModel(CompositeDisposable compositeDisposable, DBFactorySite dbFactorySite, AKSFactory aksFactory) {
         this.compositeDisposable = compositeDisposable;
         this.dbFactorySite = dbFactorySite;
+        this.aksFactory = aksFactory;
     }
 
-
     public void saveSite(Site site) {
-        sites.add(site);
-        //TODO descomentar criação do site
-       // dbFactorySite.createOrUpdateSite(site);
+        String oldPass = site.getPassword();
+        site.setPassword(aksFactory.encryptText(oldPass));
+        this.sites.add(0,site);
+        dbFactorySite.createOrUpdateSite(site);
     }
 
     public ArrayList<Site> getAllSites(){
-        //this.sites.addAll(dbFactorySite.findAllSite());
+        this.sites.clear();
+        this.sites.addAll(dbFactorySite.findAllSite());
         return sites;
     }
 }

@@ -1,9 +1,11 @@
 package com.example.gustavobarbosab.minhassenhas.screens.home.dagger;
 
+import com.example.gustavobarbosab.minhassenhas.helper.factory.AKSFactory;
 import com.example.gustavobarbosab.minhassenhas.helper.factory.DBFactorySite;
 import com.example.gustavobarbosab.minhassenhas.screens.home.HomeActivity;
 import com.example.gustavobarbosab.minhassenhas.screens.home.mvp.HomeModel;
 import com.example.gustavobarbosab.minhassenhas.screens.home.mvp.HomePresenter;
+import com.example.gustavobarbosab.minhassenhas.screens.site.SiteActivity;
 
 import dagger.Module;
 import dagger.Provides;
@@ -34,13 +36,20 @@ public class HomeModule {
 
     @HomeScope
     @Provides
-    HomeModel provideModel(DBFactorySite dbFactorySite){
-        return new HomeModel(new CompositeDisposable(),dbFactorySite);
+    HomeModel provideModel(DBFactorySite dbFactorySite, AKSFactory aksFactory){
+        return new HomeModel(new CompositeDisposable(),dbFactorySite,aksFactory);
     }
 
+    @HomeScope
     @Provides
     DBFactorySite provideDBFactorySite(HomeActivity activity){
         return DBFactorySite.init(activity.getApplicationContext());
+    }
+
+    @HomeScope
+    @Provides
+    AKSFactory provideAKSFactory(HomeActivity homeActivity){
+        return AKSFactory.getInstance(homeActivity.getApplicationContext());
     }
 
 }
