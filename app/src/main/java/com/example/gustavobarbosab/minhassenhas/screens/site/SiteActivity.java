@@ -68,11 +68,21 @@ public class SiteActivity extends AppCompatActivity {
                 .build()
                 .inject(this);
 
-        getInstanceState(savedInstanceState);
         configViews();
         sitePresenter.onCreate();
+        getInstanceState(savedInstanceState);
+        configGlide();
 
 
+    }
+
+    private void configGlide() {
+        String URL_SITE = "https://dev.people.com.ai/mobile/api/v2/logo/"+sitePresenter.getSite().getUrl();
+        String tokenid = this.getString(R.string.token_prefId);
+        String TOKEN = SharedPreferencesHelper.getSharedPreferenceString(this,tokenid,null);
+        Glide.with(image.getContext())
+                .load(GlideHelper.getUrlWithHeaders(URL_SITE,TOKEN))
+                .into(image);
     }
 
     @OnClick(R.id.fab)
@@ -102,14 +112,6 @@ public class SiteActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
-
-        String URL_SITE = "https://dev.people.com.ai/mobile/api/v2/logo/"+sitePresenter.getSite().getUrl();
-        String tokenid = this.getString(R.string.token_prefId);
-        String TOKEN = SharedPreferencesHelper.getSharedPreferenceString(this,tokenid,null);
-        Glide.with(image.getContext())
-                .load(GlideHelper.getUrlWithHeaders(URL_SITE,TOKEN))
-                .into(image);
     }
 
     public void getInstanceState(Bundle savedInstanceState) {
